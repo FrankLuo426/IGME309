@@ -1,0 +1,16 @@
+﻿  shader.cpp
+  Main.cpp
+  Generating code
+  128 of 134 functions (95.5%) were compiled, the rest were copied from previous compilation.
+    124 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  E02.vcxproj -> F:\Google Drive\学术\IGME 309\IGME309\Exercise\E02\Z_DELETE\E02.exe
+  子目录或文件 F:\Google Drive\学术\IGME 309\IGME309\Exercise\E02\_Binary\ 已经存在。
+  已复制         1 个文件。
+  子目录或文件 F:\Google Drive\学术\IGME 309\IGME309\Exercise\E02\_Binary\Shaders\ 已经存在。
+  F:\Google Drive\学术\IGME 309\IGME309\Exercise\E02\include\OpenGL-Tutorials\shaders\Simple.fs
+  F:\Google Drive\学术\IGME 309\IGME309\Exercise\E02\include\OpenGL-Tutorials\shaders\Simple.vs
+  已复制         2 个文件。
+  F:\Google Drive\学术\IGME 309\IGME309\Exercise\E02\include\GL\bin\glew32.dll
+  已复制         1 个文件。
