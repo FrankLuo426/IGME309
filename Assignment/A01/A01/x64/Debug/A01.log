@@ -1,0 +1,80 @@
+﻿  main.cpp
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(9,10): error C2146: syntax error: missing ':' before identifier 'T'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(47): message : see reference to class template instantiation 'Queue<T>' being compiled
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(9,1): error C2238: unexpected token(s) preceding ';'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(10,10): error C2062: type 'int' unexpected
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(10,1): error C2238: unexpected token(s) preceding ';'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(13,9): error C2146: syntax error: missing ':' before identifier 'Queue'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(13,1): error C2238: unexpected token(s) preceding ';'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(15,9): error C2146: syntax error: missing ':' before identifier 'Queue'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(15,1): error C2238: unexpected token(s) preceding ';'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(16,9): error C2059: syntax error: '<template-id>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(16,1): error C2238: unexpected token(s) preceding ';'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(17,9): error C2059: syntax error: '~'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(17,1): error C2238: unexpected token(s) preceding ';'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(22,9): error C2062: type 'void' unexpected
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(22,1): error C2238: unexpected token(s) preceding ';'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(29,9): error C2146: syntax error: missing ':' before identifier 'T'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(29,1): error C2238: unexpected token(s) preceding ';'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(36,9): error C2062: type 'void' unexpected
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(36,1): error C2238: unexpected token(s) preceding ';'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(39,9): error C2062: type 'int' unexpected
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(39,1): error C2238: unexpected token(s) preceding ';'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(43,9): error C2062: type 'bool' unexpected
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(43,1): error C2238: unexpected token(s) preceding ';'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(46,9): error C2062: type 'void' unexpected
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(46,1): error C2238: unexpected token(s) preceding ';'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(51,18): error C2039: '{ctor}': is not a member of 'Queue<T>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(51,1): error C2447: '{': missing function header (old-style formal list?)
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(59,18): error C2039: '{ctor}': is not a member of 'Queue<T>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(59,1): error C2447: '{': missing function header (old-style formal list?)
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(69,28): error C2039: '=': is not a member of 'Queue<T>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(69,1): error C2447: '{': missing function header (old-style formal list?)
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(91,19): error C2039: '{dtor}': is not a member of 'Queue<T>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(91,1): error C2447: '{': missing function header (old-style formal list?)
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(98,23): error C2039: 'Push': is not a member of 'Queue<T>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(98,1): error C2447: '{': missing function header (old-style formal list?)
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(115,20): error C2039: 'Pop': is not a member of 'Queue<T>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(115,1): error C2447: '{': missing function header (old-style formal list?)
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(130,23): error C2039: 'Print': is not a member of 'Queue<T>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(130,1): error C2447: '{': missing function header (old-style formal list?)
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(140,22): error C2039: 'GetSize': is not a member of 'Queue<T>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(140,1): error C2447: '{': missing function header (old-style formal list?)
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(146,23): error C2039: 'IsEmpty': is not a member of 'Queue<T>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(146,1): error C2447: '{': missing function header (old-style formal list?)
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(155,23): error C2039: 'Sort': is not a member of 'Queue<T>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\Queue.h(156,1): error C2447: '{': missing function header (old-style formal list?)
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(22,42): error C2039: 'IsEmpty': is not a member of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(18): message : see declaration of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(26,15): error C2039: 'Push': is not a member of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(18): message : see declaration of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(27,17): error C2039: 'Push': is not a member of 'Queue<float>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(20): message : see declaration of 'Queue<float>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(28,16): error C2039: 'Push': is not a member of 'Queue<char>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(19): message : see declaration of 'Queue<char>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(31,47): error C2039: 'IsEmpty': is not a member of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(18): message : see declaration of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(34,11): error C2039: 'Print': is not a member of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(18): message : see declaration of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(36,12): error C2039: 'Print': is not a member of 'Queue<char>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(19): message : see declaration of 'Queue<char>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(38,13): error C2039: 'Print': is not a member of 'Queue<float>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(20): message : see declaration of 'Queue<float>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(42,15): error C2039: 'Pop': is not a member of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(18): message : see declaration of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(43,17): error C2039: 'Pop': is not a member of 'Queue<float>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(20): message : see declaration of 'Queue<float>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(44,16): error C2039: 'Pop': is not a member of 'Queue<char>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(19): message : see declaration of 'Queue<char>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(48,11): error C2039: 'Print': is not a member of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(18): message : see declaration of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(50,12): error C2039: 'Print': is not a member of 'Queue<char>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(19): message : see declaration of 'Queue<char>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(52,13): error C2039: 'Print': is not a member of 'Queue<float>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(20): message : see declaration of 'Queue<float>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(56,11): error C2039: 'Push': is not a member of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(18): message : see declaration of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(57,11): error C2039: 'Push': is not a member of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(18): message : see declaration of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(59,11): error C2039: 'Print': is not a member of 'Queue<int>'
+F:\Google Drive\学术\IGME 309\IGME309\Assignment\A01\A01\main.cpp(18): message : see declaration of 'Queue<int>'
