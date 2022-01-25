@@ -47,7 +47,7 @@ Model::Model(String a_sFileName, bool a_bIsModelFile)
 
 	if (!FileReader::FileExists(sFileName))
 		return;
-	
+
 	Init();
 	//Read the file
 	m_sFileName = Load(sFileName);
@@ -87,7 +87,7 @@ String Model::Load(String a_sFileName)
 {
 	String sExtension = FileReader::GetExtension(a_sFileName);
 	sExtension = BTX::ToUppercase(sExtension);
-	
+
 	if ("OBJ" == sExtension)
 	{
 		return LoadOBJ(a_sFileName);
@@ -180,7 +180,7 @@ Mesh* Model::IdentifyMeshByMaterialIndex(uint a_uMaterialIndex)
 	uint uMeshCount = m_MeshList.size();
 	for (uint i = 0; i < uMeshCount; i++)
 	{
-		if(m_MeshList[i]->GetMaterialIndex() == a_uMaterialIndex)
+		if (m_MeshList[i]->GetMaterialIndex() == a_uMaterialIndex)
 			return m_MeshList[i];
 	}
 	return nullptr;
@@ -218,11 +218,9 @@ String Model::LoadOBJ(String a_sFileName)
 	int nCurrentMeshIndex = -1;
 	while (reader.ReadNextLine() != OUT_DONE)
 	{
-		
 		char* sTemp = new char[reader.m_sLine.size() + 1];
 		String sWord = reader.GetFirstWord();
-		
-		
+
 #pragma region Material Library
 		if (sWord == "mtllib")
 		{
@@ -265,7 +263,7 @@ String Model::LoadOBJ(String a_sFileName)
 
 #pragma endregion
 #pragma region Material
-		
+
 		else if (sWord == "usemtl")
 		{
 			//if we are reading a use material line
@@ -289,7 +287,7 @@ String Model::LoadOBJ(String a_sFileName)
 			* we need to create a DEFAULT_V3NEG material to use. This probably happen if the mtllib
 			* was not used so no meshes would have been created at that point to.
 			*/
-						
+
 			//if we didnt have a material we use the DEFAULT_V3NEG one
 			if (sCurrentMaterial == "")
 			{
@@ -386,7 +384,6 @@ String Model::LoadOBJ(String a_sFileName)
 				delete str;
 				str = nullptr;
 			}
-
 		}
 #pragma endregion
 	}
@@ -429,7 +426,7 @@ uint Model::RenderLists(matrix4 a_m4Projection, matrix4 a_m4View, vector3 a_v3Ca
 		}
 
 		//render
-		uRenderCalls += Render(a_m4Projection, a_m4View, fSolidArray, uSolids, 
+		uRenderCalls += Render(a_m4Projection, a_m4View, fSolidArray, uSolids,
 			a_v3CameraPosition, eBTX_RENDER::RENDER_SOLID);
 
 		//Once I render, deallocate the array
@@ -453,7 +450,7 @@ uint Model::RenderLists(matrix4 a_m4Projection, matrix4 a_m4View, vector3 a_v3Ca
 		}
 
 		//render
-		uRenderCalls += Render(a_m4Projection, a_m4View, fWireArray, uWires, 
+		uRenderCalls += Render(a_m4Projection, a_m4View, fWireArray, uWires,
 			a_v3CameraPosition, eBTX_RENDER::RENDER_WIRE);
 
 		//Once I render, deallocate the array
@@ -472,7 +469,7 @@ uint Model::Render(matrix4 a_mProjection, matrix4 a_mView, matrix4 a_mWorld,
 	uint uMeshCount = m_MeshList.size();
 	for (uint i = 0; i < uMeshCount; i++)
 	{
-		uRenderCalls += m_MeshList[i]->Render(a_mProjection, a_mView, a_mWorld, 
+		uRenderCalls += m_MeshList[i]->Render(a_mProjection, a_mView, a_mWorld,
 			a_v3CameraPosition, a_RenderOption);
 	}
 	return uRenderCalls;
@@ -501,7 +498,7 @@ void Model::AddToRenderList(matrix4 a_m4Transform, int a_RenderOption)
 		m_RenderListWire.push_back(a_m4Transform);
 	}
 }
-std::vector<matrix4> Model::GetRenderListSolids(void) {	return m_RenderListSolid; }
+std::vector<matrix4> Model::GetRenderListSolids(void) { return m_RenderListSolid; }
 std::vector<matrix4> Model::GetRenderListWires(void) { return m_RenderListWire; }
 void Model::ClearRenderLists(void)
 {
@@ -530,47 +527,47 @@ void  Model::GeneratePlane(float a_fSize, vector3 a_v3Color, matrix4 a_m4Transfo
 void Model::GenerateCube(float a_fSize, vector3 a_v3Color, matrix4 a_m4Transform)
 {
 	Mesh* pMesh = new Mesh();
-	pMesh->GenerateCube( a_fSize, a_v3Color, a_m4Transform);
+	pMesh->GenerateCube(a_fSize, a_v3Color, a_m4Transform);
 	m_MeshList.push_back(pMesh);
 }
 void Model::GenerateCone(float a_fRadius, float a_fHeight, int a_nSubdivisions, vector3 a_v3Color, matrix4 a_m4Transform)
-{ 
+{
 	Mesh* pMesh = new Mesh();
 	pMesh->GenerateCone(a_fRadius, a_fHeight, a_nSubdivisions, a_v3Color, a_m4Transform);
 	m_MeshList.push_back(pMesh);
 }
 void Model::GenerateCylinder(float a_fRadius, float a_fHeight, int a_nSubdivisions, vector3 a_v3Color, matrix4 a_m4Transform)
-{ 
+{
 	Mesh* pMesh = new Mesh();
-	pMesh->GenerateCylinder( a_fRadius, a_fHeight, a_nSubdivisions, a_v3Color, a_m4Transform);
+	pMesh->GenerateCylinder(a_fRadius, a_fHeight, a_nSubdivisions, a_v3Color, a_m4Transform);
 	m_MeshList.push_back(pMesh);
 }
 void Model::GenerateTube(float a_fOuterRadius, float a_fInnerRadius, float a_fHeight, int a_nSubdivisions, vector3 a_v3Color, matrix4 a_m4Transform)
-{ 
+{
 	Mesh* pMesh = new Mesh();
 	pMesh->GenerateTube(a_fOuterRadius, a_fInnerRadius, a_fHeight, a_nSubdivisions, a_v3Color, a_m4Transform);
 	m_MeshList.push_back(pMesh);
 }
 void Model::GenerateTorus(float a_fOuterRadius, float a_fInnerRadius, int a_nSubdivisionHeight, int a_nSubdivisionAxis, vector3 a_v3Color, matrix4 a_m4Transform)
-{ 
+{
 	Mesh* pMesh = new Mesh();
-	pMesh->GenerateTorus( a_fOuterRadius, a_fInnerRadius, a_nSubdivisionHeight, a_nSubdivisionAxis, a_v3Color, a_m4Transform);
+	pMesh->GenerateTorus(a_fOuterRadius, a_fInnerRadius, a_nSubdivisionHeight, a_nSubdivisionAxis, a_v3Color, a_m4Transform);
 	m_MeshList.push_back(pMesh);
 }
 void Model::GenerateSphere(float a_fRadius, int a_nSubdivisions, vector3 a_v3Color, matrix4 a_m4Transform)
-{ 
+{
 	Mesh* pMesh = new Mesh();
-	pMesh->GenerateSphere( a_fRadius, a_nSubdivisions, a_v3Color, a_m4Transform);
+	pMesh->GenerateSphere(a_fRadius, a_nSubdivisions, a_v3Color, a_m4Transform);
 	m_MeshList.push_back(pMesh);
 }
 void Model::GenerateIcosahedron(float a_fRadius, int a_nSubdivisions, vector3 a_v3Color, matrix4 a_m4Transform)
-{ 
+{
 	Mesh* pMesh = new Mesh();
-	pMesh->GenerateIcosahedron( a_fRadius, a_nSubdivisions, a_v3Color, a_m4Transform);
+	pMesh->GenerateIcosahedron(a_fRadius, a_nSubdivisions, a_v3Color, a_m4Transform);
 	m_MeshList.push_back(pMesh);
 }
 void Model::GenerateWireCube(float a_fSize, vector3 a_v3Color, matrix4 a_m4Transform)
-{ 
+{
 	Mesh* pMesh = new Mesh();
 	pMesh->GenerateWireCube(a_fSize, a_v3Color, a_m4Transform);
 	m_MeshList.push_back(pMesh);
@@ -582,20 +579,20 @@ void Model::GenerateWireSphere(float a_fRadius, vector3 a_v3Color, matrix4 a_m4T
 	m_MeshList.push_back(pMesh);
 }
 void Model::GenerateSkybox(void)
-{ 
+{
 	Mesh* pMesh = new Mesh();
 	pMesh->GenerateSkybox();
 	m_MeshList.push_back(pMesh);
 }
 void Model::GenerateLine(vector3 a_v3Start, vector3 a_v3End, vector3 a_v3ColorStart, vector3 a_v3ColorEnd)
-{ 
+{
 	Mesh* pMesh = new Mesh();
-	pMesh->GenerateLine( a_v3Start, a_v3End, a_v3ColorStart, a_v3ColorEnd);
+	pMesh->GenerateLine(a_v3Start, a_v3End, a_v3ColorStart, a_v3ColorEnd);
 	m_MeshList.push_back(pMesh);
 }
 void Model::GenerateStar(uint a_uSubdivisions, float fRadius1, float fRadius2, vector3 a_v3Color, matrix4 a_m4Transform)
-{ 
+{
 	Mesh* pMesh = new Mesh();
-	pMesh->GenerateStar( a_uSubdivisions, fRadius1, fRadius2, a_v3Color, a_m4Transform);
+	pMesh->GenerateStar(a_uSubdivisions, fRadius1, fRadius2, a_v3Color, a_m4Transform);
 	m_MeshList.push_back(pMesh);
 }

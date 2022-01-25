@@ -31,7 +31,6 @@ namespace BTX
 		//LightManager::ReleaseInstance();
 		//Text::ReleaseInstance();
 	};
-
 } //namespace BTX
 
 #endif //__BTXSFRAMEWORK_H_

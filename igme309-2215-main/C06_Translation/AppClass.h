@@ -26,19 +26,19 @@ typedef glm::vec4 vector4;
 typedef glm::mat3 matrix3;
 typedef glm::mat4 matrix4;
 
-class AppClass 
+class AppClass
 {
 	std::string m_sWindowName = ""; //window name
 	sf::Window* m_pWindow = nullptr; //SFML window
 	GLuint m_uShaderProgramID = 0; //Shader program
 	GLuint m_uVAO = 0; //Vertex Array Object
 	GLuint m_uVBO = 0; //Vertex Buffer Object
-	
+
 	matrix4 m_m4Model = matrix4(1.0f); //Identity matrix
 	vector3 m_v3Color = vector3(-1.0f); //Color of shape
 
 	bool m_bRunning = true; //Running Flag
-	
+
 public:
 	/*
 	USAGE: Constructor

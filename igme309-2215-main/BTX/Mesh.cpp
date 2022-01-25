@@ -155,7 +155,6 @@ void Mesh::SetMaterial(int a_nMaterialIndex)
 }
 void Mesh::SetMaterial(String a_sMaterialName)
 {
-
 	int nMaterial = m_pMatMngr->IdentifyMaterial(a_sMaterialName);
 	if (nMaterial != -1)
 	{
@@ -490,7 +489,7 @@ void Mesh::AddTri(vector3 a_vBottomLeft, vector3 a_vBottomRight, vector3 a_vTopL
 	//C
 	//| \
 	//A--B
-	//This will make the triangle A->B->C 
+	//This will make the triangle A->B->C
 	AddVertexPosition(a_vBottomLeft);
 	AddVertexPosition(a_vBottomRight);
 	AddVertexPosition(a_vTopLeft);
@@ -527,7 +526,7 @@ void Mesh::AddWireTri(vector3 a_vBottomLeft, vector3 a_vBottomRight, vector3 a_v
 	//C
 	//| \
 	//A--B
-	//This will make the triangle A->B->C 
+	//This will make the triangle A->B->C
 	AddVertexPosition(a_vBottomLeft);
 	AddVertexPosition(a_vBottomRight);
 
@@ -688,16 +687,16 @@ void Mesh::GenerateCone(float a_fRadius, float a_fHeight, int a_nSubdivisions, v
 	Release();
 	Init();
 
-	std::vector<vector3> positionList = 
+	std::vector<vector3> positionList =
 		BTXs::GenerateCone(a_fRadius, a_fHeight, a_nSubdivisions);
 	for (uint i = 0; i < positionList.size(); i++)
 	{
 		positionList[i] = a_m4Transform * vector4(positionList[i], 1.0f);
 	}
 	uint uSize = positionList.size();
-	for (uint i = 0; i < uSize; i+=3)
+	for (uint i = 0; i < uSize; i += 3)
 	{
-		AddTri(positionList[i], positionList[i+1], positionList[i+2]);
+		AddTri(positionList[i], positionList[i + 1], positionList[i + 2]);
 	}
 
 	// Adding information about color and UVs to all faces
@@ -736,7 +735,7 @@ void Mesh::GenerateCylinder(float a_fRadius, float a_fHeight, int a_nSubdivision
 	{
 		AddTri(positionList[i], positionList[i + 1], positionList[i + 2]);
 	}
-	
+
 	//Complete and compile the mesh
 	CompleteMesh(a_v3Color);
 	CompileOpenGL3X();
@@ -1131,12 +1130,12 @@ void Mesh::GenerateLine(vector3 a_v3Start, vector3 a_v3End, vector3 a_v3ColorSta
 	//Compile shape
 	m_bLineObject = true;
 	CompileOpenGL3X();
-	m_sName = "line_(" + 
-		std::to_string(a_v3ColorStart.x) + "," + 
-		std::to_string(a_v3ColorStart.y) + "," + 
-		std::to_string(a_v3ColorStart.z) + "," + 
-		std::to_string(a_v3ColorEnd.x) + "," + 
-		std::to_string(a_v3ColorEnd.y) + "," + 
+	m_sName = "line_(" +
+		std::to_string(a_v3ColorStart.x) + "," +
+		std::to_string(a_v3ColorStart.y) + "," +
+		std::to_string(a_v3ColorStart.z) + "," +
+		std::to_string(a_v3ColorEnd.x) + "," +
+		std::to_string(a_v3ColorEnd.y) + "," +
 		std::to_string(a_v3ColorEnd.z) + ")";
 	//m_sName = BTX::ToUppercase(m_sName);
 	SetShaderProgram("Line");
@@ -1272,8 +1271,7 @@ uint Mesh::RenderSolid(matrix4 a_mProjection, matrix4 a_mView, float* a_fMatrixA
 	vector3 v3Color = vector3(1.0f, 1.0f, 1.0f);
 	glUniform3f(AmbientColor, v3Color.r, v3Color.g, v3Color.b);
 	glUniform1f(AmbientPower, 0.75f);
-	
-	
+
 	//TODO: I removed the light manager for simplicity purposes so this light source is hardcoded
 	vector3 v3Position = vector3(5.0f);
 	glUniform3f(LightPosition_W, v3Position.x, v3Position.y, v3Position.z);

@@ -3,12 +3,12 @@
 AppClass::AppClass(std::string a_windowName) : m_sWindowName(a_windowName) {}
 AppClass::AppClass(AppClass const& input) {}
 AppClass& AppClass::operator=(AppClass const& input) { return *this; }
-AppClass::~AppClass(void){ Release(); }
+AppClass::~AppClass(void) { Release(); }
 void AppClass::Run(void)
 {
 	//Initialize the system with the fields recollected by the constructor
 	Init();
-	
+
 	//Set the background color
 	glClearColor(0.392f, 0.584f, 0.929f, 1.0f);
 
@@ -82,7 +82,7 @@ void AppClass::InitVariables(void)
 	//vertex 3
 	lVertex.push_back(glm::vec3(0.0f, 1.0f, 0.0f)); //position
 	lVertex.push_back(glm::vec3(0.0f, 0.0f, 1.0f)); //color
-	
+
 	glGenVertexArrays(1, &m_uVAO);//Generate vertex array object
 	glGenBuffers(1, &m_uVBO);//Generate Vertex Buffered Object
 
@@ -94,7 +94,7 @@ void AppClass::InitVariables(void)
 
 	//count the attributes
 	int attributeCount = 2;
-	
+
 	// Position attribute
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, attributeCount * sizeof(glm::vec3), (GLvoid*)0);

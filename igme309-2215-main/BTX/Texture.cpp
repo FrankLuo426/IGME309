@@ -77,7 +77,6 @@ bool Texture::LoadTexture(String a_sFileName)
 				);
 		#elif _MSC_VER == 1900 //If visual studio 2015
 
-
 		//#endif*/
 	}
 	//else
@@ -91,7 +90,7 @@ bool Texture::LoadTexture(String a_sFileName)
 	//	);
 	//}
 
-	//Now generate the OpenGL texture object 
+	//Now generate the OpenGL texture object
 	glGenTextures(1, &m_nTextureID); //Generate a container
 	glBindTexture(GL_TEXTURE_2D, m_nTextureID); //Set the active texture
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, (GLvoid*)tempGLTexture); //Set the data

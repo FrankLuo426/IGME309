@@ -26,10 +26,10 @@ sf::Image LoadImageFromResource(const std::string& name)
 Application::Application() {}
 Application::Application(Application const& input) {}
 Application& Application::operator=(Application const& input) { return *this; }
-Application::~Application(void) 
+Application::~Application(void)
 {
 	Release();
-	
+
 	// Release the BTX singletons
 	ReleaseAllSingletons();
 	SafeDelete(m_pWindow);
@@ -128,7 +128,7 @@ void Application::Reshape(void)
 	m_pSystem->SetWindowY(pos.y);
 	m_pSystem->SetWindowWidth(size.x);
 	m_pSystem->SetWindowHeight(size.y);
-   
+
 	// adjust the viewport when the window is resized
 	glViewport(0, 0, size.x, size.y);
 	//m_pMeshMngr->SetRenderTarget(0, 0, 0, size.x, size.y);
@@ -143,7 +143,7 @@ void Application::Init(String a_sApplicationName, int a_uSize, bool a_bFullscree
 	m_pSystem = SystemSingleton::GetInstance();
 	m_pSystem->SetWindowResolution(a_uSize);
 	Init(a_sApplicationName, m_pSystem->GetWindowWidth(), m_pSystem->GetWindowHeight(), a_bFullscreen, a_bBorderless);
-		
+
 	//Initializated flag
 	bInitializated = true;
 }
@@ -158,7 +158,7 @@ void Application::Init(String a_sApplicationName, uint a_uWidth, uint a_uHeight,
 	//Init System
 	m_pSystem = SystemSingleton::GetInstance();
 
-	if(a_sApplicationName == "")
+	if (a_sApplicationName == "")
 		m_pSystem->SetWindowName(m_pSystem->GetAppName());
 	else
 		m_pSystem->SetWindowName(a_sApplicationName);
@@ -166,26 +166,26 @@ void Application::Init(String a_sApplicationName, uint a_uWidth, uint a_uHeight,
 	m_pSystem->SetWindowHeight(a_uHeight);
 	m_pSystem->SetWindowFullscreen(a_bFullscreen);
 	m_pSystem->SetWindowBorderless(a_bBorderless);
-	
+
 	////Get light manager
 	//m_pLightMngr = LightManager::GetInstance();
 
 	// Set the clear color based on Microsoft's CornflowerBlue (default in XNA)
 	m_v4ClearColor = vector4(C_BLUE_CORNFLOWER, 1.0f);
-	
+
 	//Read configuration
 	ReadConfig(); // <<< the .ini file will have preference over programmer >>>
 
 	//Init GLFW Window
 	InitWindow(m_pSystem->GetWindowName());
-			
+
 	//Init Camera
 	m_pCameraMngr = CameraManager::GetInstance();
 	m_pCameraMngr->SetPositionTargetAndUpward(
 		vector3(0.0f, 0.0f, 15.0f),//Camera position
 		vector3(0.0f, 0.0f, 0.0f),//What I'm looking at
 		AXIS_Y);//What is up
-	
+
 	//Init Model and Entity Managers
 	m_pModelMngr = ModelManager::GetInstance();
 	m_pEntityMngr = EntityManager::GetInstance();
@@ -208,22 +208,22 @@ void Application::InitWindow(String a_sWindowName)
 
 	if (m_pSystem->IsWindowBorderless())
 		uStyle = sf::Style::None;
-	
+
 	if (m_pSystem->IsWindowFullscreen())
 		uStyle = sf::Style::Fullscreen;
-		
+
 	//If OpenGL 4.5 is not supported in the system glfw will warn you and determine the highest possible version
 	m_pWindow = new sf::Window(sf::VideoMode(m_pSystem->GetWindowWidth(), m_pSystem->GetWindowHeight(), 32), //Window size
-								a_sWindowName, //window name
-								uStyle, //window style
-								sf::ContextSettings(	24, //depth buffer
-														0,	//stencil
-														0,	//Antialiasing
-														4,	//OpenGL Major
-														5,	//OpenGL Minor
-														0,	//Attributes
-														false //sRGB
-													)); //context settings
+		a_sWindowName, //window name
+		uStyle, //window style
+		sf::ContextSettings(24, //depth buffer
+			0,	//stencil
+			0,	//Antialiasing
+			4,	//OpenGL Major
+			5,	//OpenGL Minor
+			0,	//Attributes
+			false //sRGB
+		)); //context settings
 	m_pWindow->setVerticalSyncEnabled(true);
 	m_pWindow->setFramerateLimit(m_pSystem->GetMaxFrameRate());
 	sf::Image icon = LoadImageFromResource("iconPNG");

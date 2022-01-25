@@ -117,7 +117,7 @@ void Application::Display(void)
 
 	//draw gui
 	DrawGUI();
-	
+
 	//end the current frame (internally swaps the front and back buffers)
 	m_pWindow->display();
 }

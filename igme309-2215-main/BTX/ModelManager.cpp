@@ -41,7 +41,7 @@ void ModelManager::Init(void)
 
 	//Needed them in a particular order, this seems the best way of making sure it happens
 	for (uint i = 0; i < 12; i++)
-	
+
 		switch (i)
 		{
 		case ModelOrder::SKYBOX:
@@ -86,10 +86,9 @@ void ModelManager::Init(void)
 		default:
 			break;
 		}
-	
 }
 void ModelManager::Release(void)
-{	
+{
 	m_pShaderMngr = nullptr;
 	m_pMatMngr = nullptr;
 	m_pCameraMngr = nullptr;
@@ -109,7 +108,7 @@ void ModelManager::Release(void)
 }
 ModelManager* ModelManager::GetInstance()
 {
-	if(m_pInstance == nullptr)
+	if (m_pInstance == nullptr)
 	{
 		m_pInstance = new ModelManager();
 	}
@@ -117,25 +116,25 @@ ModelManager* ModelManager::GetInstance()
 }
 void ModelManager::ReleaseInstance()
 {
-	if(m_pInstance != nullptr)
+	if (m_pInstance != nullptr)
 	{
 		delete m_pInstance;
 		m_pInstance = nullptr;
 	}
 }
 //The big 3
-ModelManager::ModelManager(){Init();}
-ModelManager::ModelManager(ModelManager const& other){ }
+ModelManager::ModelManager() { Init(); }
+ModelManager::ModelManager(ModelManager const& other) { }
 ModelManager& ModelManager::operator=(ModelManager const& other) { return *this; }
-ModelManager::~ModelManager(){Release();};
+ModelManager::~ModelManager() { Release(); };
 //--- Generate shapes
 Model* ModelManager::AddModel(Model* a_pModel)
 {
 	//check if empty pointer
 	if (!a_pModel)
 		return nullptr;
-	
-	//Check if the model is already in the list 
+
+	//Check if the model is already in the list
 	//if it is, then don't add it, return the existing one
 	String sName = a_pModel->GetName();
 	//sName = BTX::ToUppercase(sName);
@@ -422,7 +421,7 @@ Model* ModelManager::GenerateLine(vector3 a_v3Start, vector3 a_v3End, vector3 a_
 }
 Model* ModelManager::GenerateSkybox(void)
 {
-	//There can only be one skybox, if needed we would change texture 
+	//There can only be one skybox, if needed we would change texture
 	//for it on add to render list
 	String sName = "skybox_skybox.png";
 	//sName = BTX::ToUppercase(sName);
@@ -491,7 +490,7 @@ void ModelManager::AddCubeToRenderList(matrix4 a_m4ToWorld, vector3 a_v3Color, i
 	//if the model does not exist create it
 	if (!pModel)
 		pModel = GenerateUniCube(a_v3Color);
-	
+
 	AddModelToRenderList(sName, a_m4ToWorld, a_Render);
 }
 void ModelManager::AddConeToRenderList(matrix4 a_m4ToWorld, vector3 a_v3Color, int a_Render)
@@ -645,13 +644,13 @@ void ModelManager::AddLineToRenderList(matrix4 a_m4ToWorld, vector3 a_v3Start, v
 	//Use the default line
 	Model* pModel = m_ModelList[ModelOrder::LINE];
 	String sName = pModel->GetName();
-	
+
 	//See if we are not using a default white line
 	if (a_v3ColorStart != C_WHITE ||
-		a_v3ColorEnd != C_WHITE )
+		a_v3ColorEnd != C_WHITE)
 	{
 		//If we are not then we may have to make a new line or look for one which is slower
-		//instead of making all possible lines based on two points and two colors we create a 
+		//instead of making all possible lines based on two points and two colors we create a
 		//unit length line based on two colors, and then we scale and orient it.
 		sName = "line_(" +
 			std::to_string(0.0f) + "," +
@@ -677,11 +676,11 @@ void ModelManager::AddLineToRenderList(matrix4 a_m4ToWorld, vector3 a_v3Start, v
 		AddModelToRenderList(pModel, a_m4ToWorld * m4ToWorld, RENDER_WIRE);
 		return;
 	}
-	
+
 	//We will send the pointer to the line model without checking to remove overhead
 	//this is potentially an issue if we can't be sure of the index in the array of our line
 	//but that is what the enum help us with.
-	
+
 	//this will remove the overhead of checking if its the right model
 	m_ModelList[ModelOrder::LINE]->AddToRenderList(a_m4ToWorld * m4ToWorld, RENDER_WIRE);
 }
@@ -699,7 +698,7 @@ void ModelManager::AddGridToRenderList(matrix4 a_m4ToWorld)
 	//TODO: this is really slow as we are indexing the model of a line 200 times,
 	//repace with a single model created
 	float fSize = 100.0f;
-	float fStart = -fSize/2.0f;
+	float fStart = -fSize / 2.0f;
 	for (uint i = 0; i < 101; i++)
 	{
 		AddLineToRenderList(a_m4ToWorld * glm::translate(vector3(0.0f, fStart, 0.0f)), -fSize / 2.0f * AXIS_X, fSize / 2.0f * AXIS_X, C_WHITE, C_WHITE);
@@ -713,7 +712,7 @@ void ModelManager::AddGridToRenderList()
 	//repace with a single model created
 	float fSize = 100.0f;
 	float fStart = -fSize / 2.0f;
-	
+
 	BTXs::eCAMERAMODE mode = m_pCameraMngr->GetCameraMode();
 	switch (mode)
 	{
@@ -936,7 +935,7 @@ void ModelManager::ClearRenderList(void)
 void ModelManager::AddModelToRenderList(String a_sModelName, matrix4 a_m4Transform, int a_nRender)
 {
 	/*
-	* GetModel will return a nullptr if the string is empty and AddModelToRenderList 
+	* GetModel will return a nullptr if the string is empty and AddModelToRenderList
 	* by pointer checks for a nullptr so we delegate the check to it
 	*/
 	AddModelToRenderList(GetModel(a_sModelName), a_m4Transform, a_nRender);
@@ -950,7 +949,7 @@ void ModelManager::AddModelToRenderList(Model* pModel, matrix4 a_m4Transform, in
 	//Known issues: if the model is not part of the list it will add to its render list
 	//but it will never be cleared
 	pModel->AddToRenderList(a_m4Transform, a_RenderOption);
-	
+
 	//Safer but slower version
 	////Check if model is in the list of models
 	//int index = GetModelIndex(pModel->GetName());
@@ -963,17 +962,16 @@ void ModelManager::AddModelToRenderList(Model* pModel, matrix4 a_m4Transform, in
 }
 String ModelManager::LoadModel(String a_sFileName)
 {
-
 	//Check if model exists already
 	Model* pModel = GetModel(a_sFileName);
-	
+
 	//If it does just return its name
-	if(pModel)
+	if (pModel)
 		return pModel->GetName();
-	
-	//If it doesn't, make a new model and load it 
+
+	//If it doesn't, make a new model and load it
 	pModel = new Model(a_sFileName);
-	
+
 	//If it wasn't able to load return empty string
 	if (pModel->GetName() == "")
 		return "";

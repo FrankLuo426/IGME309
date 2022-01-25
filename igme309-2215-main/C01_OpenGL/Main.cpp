@@ -2,7 +2,7 @@
 //Callbacks
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	//Callbacks for winapi 
+	//Callbacks for winapi
 	switch (msg)
 	{
 	case WM_CLOSE: // if the close message was sent
@@ -26,7 +26,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		break;
 	}
 	return 0; //end the program
-
 }
 //Shader sources
 const GLchar* vertexShader = R"glsl(
@@ -140,7 +139,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		0,								// Shift Bit Ignored
 		0,								// No Accumulation Buffer
 		0, 0, 0, 0,						// Accumulation Bits Ignored
-		32,								// 32Bit Z-Buffer (Depth Buffer)  
+		32,								// 32Bit Z-Buffer (Depth Buffer)
 		0,								// No Stencil Buffer
 		0,								// No Auxiliary Buffer
 		PFD_MAIN_PLANE,					// Main Drawing Layer

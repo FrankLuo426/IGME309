@@ -14,14 +14,14 @@ Date : 2018 / 01
 #include <SFML/Window.hpp>
 #include <SFML/OpenGL.hpp>
 
-class AppClass 
+class AppClass
 {
 	sf::Window* window = nullptr; //SFML window
 	GLuint shaderProgramID = 0;
 	GLuint vao = 0;
 	GLuint vbo = 0;
 	bool running = true;
-	
+
 public:
 	/*
 	USAGE: Constructor

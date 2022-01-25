@@ -77,7 +77,7 @@ void RigidBody::SetColorNotColliding(vector3 a_v3Color) { m_v3ColorNotColliding 
 vector3 RigidBody::GetCenterLocal(void) { return m_v3CenterL; }
 vector3 RigidBody::GetMinLocal(void) { return m_v3MinL; }
 vector3 RigidBody::GetMaxLocal(void) { return m_v3MaxL; }
-vector3 RigidBody::GetCenterGlobal(void){ return m_v3CenterG; }
+vector3 RigidBody::GetCenterGlobal(void) { return m_v3CenterG; }
 vector3 RigidBody::GetMinGlobal(void) { return m_v3MinG; }
 vector3 RigidBody::GetMaxGlobal(void) { return m_v3MaxG; }
 vector3 RigidBody::GetHalfWidth(void) { return m_v3HalfWidth; }
@@ -298,8 +298,8 @@ bool RigidBody::IsColliding(RigidBody* const other)
 {
 	//check if spheres are colliding
 	bool bColliding = (glm::distance(m_v3CenterG, other->m_v3CenterG) < m_fRadius + other->m_fRadius);
-	if (bColliding) 
-	{	
+	if (bColliding)
+	{
 		//they failed the pretest, use specialized test
 		//if we could not find a Separating Axis then they are colliding
 		bColliding = (SAT(other) == BTXs::eSATResults::SAT_NONE);
@@ -312,7 +312,7 @@ bool RigidBody::IsColliding(RigidBody* const other)
 		this->AddCollisionWith(other);
 		other->AddCollisionWith(this);
 	}
-	else 
+	else
 	{
 		//they are not colliding remove the collisions
 		this->RemoveCollisionWith(other);

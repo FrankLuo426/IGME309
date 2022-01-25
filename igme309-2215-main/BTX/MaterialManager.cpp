@@ -4,19 +4,19 @@ using namespace BTX;
 MaterialManager* MaterialManager::m_pInstance = nullptr;
 MaterialManager* MaterialManager::GetInstance(void)
 {
-	if(m_pInstance == nullptr)
+	if (m_pInstance == nullptr)
 	{
 		m_pInstance = new MaterialManager();
 	}
 	return m_pInstance;
 }
-MaterialManager::MaterialManager(void){Init();}
-MaterialManager::MaterialManager(MaterialManager const& other){}
-MaterialManager& MaterialManager::operator=(MaterialManager const& other) {	return *this; }
-MaterialManager::~MaterialManager(void){Release();};
+MaterialManager::MaterialManager(void) { Init(); }
+MaterialManager::MaterialManager(MaterialManager const& other) {}
+MaterialManager& MaterialManager::operator=(MaterialManager const& other) { return *this; }
+MaterialManager::~MaterialManager(void) { Release(); };
 void MaterialManager::ReleaseInstance()
 {
-	if(m_pInstance != nullptr)
+	if (m_pInstance != nullptr)
 	{
 		delete m_pInstance;
 		m_pInstance = nullptr;
@@ -26,10 +26,10 @@ void MaterialManager::ReleaseInstance()
 void  MaterialManager::Release(void)
 {
 	int nMaterials = static_cast<int>(m_materialList.size());
-	for(int i = 0; i < nMaterials; i++)
+	for (int i = 0; i < nMaterials; i++)
 	{
 		Material* temp = m_materialList[i];
-		if(temp)
+		if (temp)
 		{
 			delete temp;
 			temp = nullptr;
@@ -45,11 +45,11 @@ void MaterialManager::Init(void)
 int MaterialManager::AddMaterial(Material input)
 {
 	int nMaterial = IdentifyMaterial(input.GetName());
-	if(nMaterial == -1)
+	if (nMaterial == -1)
 	{
 		Material* pMaterial = new Material(input);
 		m_materialList.push_back(pMaterial);
-		nMaterial = m_materialList.size() -1;
+		nMaterial = m_materialList.size() - 1;
 		m_map[pMaterial->GetName()] = nMaterial;
 	}
 	ReloadMaps();
@@ -66,10 +66,10 @@ int MaterialManager::AddMaterial(String a_sName)
 	//if no material was found create a new material and add it to the vector
 	Material* pMaterial = new Material(a_sName);
 	m_materialList.push_back(pMaterial);
-	m_map[pMaterial->GetName()] = static_cast<int>(m_materialList.size() -1);
+	m_map[pMaterial->GetName()] = static_cast<int>(m_materialList.size() - 1);
 
 	//return the newly added material's index
-	return m_materialList.size() -1;
+	return m_materialList.size() - 1;
 }
 int MaterialManager::AddMaterial(String a_sName, String a_sDiffuse, String a_sNormal, String a_sSpecular)
 {
@@ -88,7 +88,7 @@ int MaterialManager::AddMaterial(String a_sName, String a_sDiffuse, String a_sNo
 int MaterialManager::IdentifyMaterial(String a_sName)
 {
 	auto var = m_map.find(a_sName);
-	if(var != m_map.end())
+	if (var != m_map.end())
 		return var->second;
 
 	return -1;
@@ -100,7 +100,7 @@ int MaterialManager::GetMaterialCount(void)
 void MaterialManager::ReloadMaps()
 {
 	int nMaterials = GetMaterialCount();
-	for(int i = 0; i < nMaterials; i++)
+	for (int i = 0; i < nMaterials; i++)
 	{
 		m_materialList[i]->LoadMaps();
 	}
@@ -110,7 +110,7 @@ Material MaterialManager::GetMaterialCopy(String a_sName)
 {
 	int nIndex = IdentifyMaterial(a_sName);
 	Material newMaterial(a_sName);
-	if(nIndex >=0)
+	if (nIndex >= 0)
 		newMaterial = *m_materialList[nIndex];
 	return newMaterial;
 }

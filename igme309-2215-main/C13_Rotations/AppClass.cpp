@@ -62,7 +62,6 @@ void Application::Display(void)
 	//draw the center of the world
 	m_pModelMngr->AddSphereToRenderList(glm::scale(vector3(0.1f)), C_RED, RENDER_WIRE);
 
-
 	//render list call
 	m_uRenderCallCount = m_pModelMngr->Render();
 
@@ -71,7 +70,7 @@ void Application::Display(void)
 
 	//draw gui
 	DrawGUI();
-	
+
 	//end the current frame (internally swaps the front and back buffers)
 	m_pWindow->display();
 }

@@ -53,7 +53,7 @@ public:
 	OUTPUT: ---
 	*/
 	Application();
-	
+
 	/*
 	USAGE: Initializes the window and rendering context
 	ARGUMENTS:
@@ -65,7 +65,7 @@ public:
 	*/
 	void Init(String a_sApplicationName = "", int a_uSize = eBTX_RESOLUTIONS::RES_C_1280x720_16x9_HD,
 		bool a_bFullscreen = false, bool a_bBorderless = false);
-	
+
 	/*
 	USAGE: Initializes the window and rendering context
 	ARGUMENTS:
@@ -77,14 +77,14 @@ public:
 	OUTPUT: ---
 	*/
 	void Init(String a_sApplicationName, uint a_uWidth, uint a_uHeight, bool a_bFullscreen, bool a_bBorderless);
-	
+
 	/*
 	USAGE: Runs the main loop of this class DO NOT OVERRIDE
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	void Run(void);
-	
+
 	/*
 	USAGE: Destructor
 	ARGUMENTS: ---
@@ -101,7 +101,7 @@ private:
 	OUTPUT: ---
 	*/
 	void InitWindow(String a_sWindowName = "Application");
-	
+
 	/*
 	USAGE: Initializes user specific variables, this is executed right after InitWindow,
 	the purpose of this member function is to initialize member variables specific for this project.
@@ -109,21 +109,21 @@ private:
 	OUTPUT: ---
 	*/
 	void InitVariables(void);
-	
+
 	/*
 	USAGE: Reads the configuration of the application to a file
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	void ReadConfig(void);
-	
+
 	/*
 	USAGE: Writes the configuration of the application to a file
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	void WriteConfig(void);
-	
+
 	/*
 	USAGE: Releases the application
 	ARGUMENTS: ---
@@ -139,14 +139,14 @@ private:
 	OUTPUT: ---
 	*/
 	void Update(void);
-	
+
 	/*
 	USAGE: Displays the scene
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	void Display(void);
-	
+
 	/*
 	USAGE: Clears the OpenGL screen by the specified color
 	ARGUMENTS: vector4 a_v4ClearColor = vector4(-1.0f) -> Color to clear the screen with
@@ -162,14 +162,14 @@ private:
 	OUTPUT: ---
 	*/
 	void ProcessKeyboard(void);
-	
+
 	/*
 	USAGE: Manage constant keyboard state
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	void ArcBall(float a_fSensitivity = 0.1f);
-	
+
 	/*
 	USAGE: Manages the rotation of the camera a_fSpeed is a factor of change
 	ARGUMENTS: float a_fSpeed = 0.005f
@@ -185,42 +185,42 @@ private:
 	OUTPUT: ---
 	*/
 	void Reshape(void);
-	
+
 	/*
 	USAGE: Manage the response of key presses
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	void ProcessKeyPressed(sf::Event a_event);
-	
+
 	/*
 	USAGE: Manage the response of key releases
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	void ProcessKeyReleased(sf::Event a_event);
-	
+
 	/*
 	USAGE: Manage the response of mouse movement
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	void ProcessMouseMovement(sf::Event a_event);
-	
+
 	/*
 	USAGE: Manage the response of mouse key presses
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	void ProcessMousePressed(sf::Event a_event);
-	
+
 	/*
 	USAGE: Manage the response of mouse key release
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	void ProcessMouseReleased(sf::Event a_event);
-	
+
 	/*
 	USAGE: Manage the response of mouse scrolling
 	ARGUMENTS: ---
@@ -236,42 +236,42 @@ private:
 	OUTPUT: ---
 	*/
 	void InitIMGUI(void);
-	
+
 	/*
 	USAGE: Draw gui elements
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	void DrawGUI(void);
-	
+
 	/*
 	USAGE: //release gui
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	void ShutdownGUI(void);
-	
+
 	/*
 	USAGE: Render gui lists
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	static void RenderDrawLists(ImDrawData* draw_data);
-	
+
 	/*
 	USAGE: Creates fonts for gui
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	bool CreateFontsTexture(void);
-	
+
 	/*
 	USAGE: Create OpenGL resources for gui
 	ARGUMENTS: ---
 	OUTPUT: ---
 	*/
 	bool CreateDeviceObjects(void);
-	
+
 	/*
 	USAGE: creates a new frame for gui
 	ARGUMENTS: ---
@@ -287,7 +287,7 @@ private:
 	OUTPUT: ---
 	*/
 	Application(Application const& input);
-	
+
 	/*
 	USAGE: copy assignment, private so it does not let object copy
 	ARGUMENTS: GLFWApp const& input -> object to copy (well in this case not)

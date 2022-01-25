@@ -43,7 +43,7 @@ void Application::Display(void)
 {
 	// Clear the screen
 	ClearScreen();
-	
+
 	matrix4 m4Model = ToMatrix4(m_qArcBall);//model matrix
 
 	// draw a skybox
@@ -57,7 +57,7 @@ void Application::Display(void)
 
 	//draw gui
 	DrawGUI();
-	
+
 	//end the current frame (internally swaps the front and back buffers)
 	m_pWindow->display();
 }

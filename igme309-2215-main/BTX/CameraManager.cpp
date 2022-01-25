@@ -43,11 +43,11 @@ CameraManager::CameraManager()
 {
 	Init();
 }
-CameraManager::CameraManager(CameraManager const& other){ }
+CameraManager::CameraManager(CameraManager const& other) { }
 CameraManager& CameraManager::operator=(CameraManager const& other) { return *this; }
-CameraManager::~CameraManager(){ Release(); };
+CameraManager::~CameraManager() { Release(); };
 //Accessors
-void CameraManager::SetActiveCamera(uint a_nIndex){ if (a_nIndex < m_uCameraCount) m_uActiveCamera = a_nIndex; return; }
+void CameraManager::SetActiveCamera(uint a_nIndex) { if (a_nIndex < m_uCameraCount) m_uActiveCamera = a_nIndex; return; }
 uint CameraManager::GetActiveCamera(void) { return m_uActiveCamera; }
 void CameraManager::SetPosition(vector3 a_v3Position, int a_nIndex)
 {

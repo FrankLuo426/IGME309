@@ -2,14 +2,14 @@
 using namespace BTX;
 //  ShaderManager
 ShaderManager* ShaderManager::m_pInstance = nullptr;
-void ShaderManager::Init(void) 
+void ShaderManager::Init(void)
 {
 	m_uShaderCount = 0;
 	//printf("Shaders: ");
 
 	//Compile Color shader
 	FolderSingleton* pFolder = FolderSingleton::GetInstance();
-	
+
 	//Compile Text shader
 	CompileShader(pFolder->GetFolderShaders() + "Text.vs", pFolder->GetFolderShaders() + "Text.fs", "Text");
 
@@ -24,19 +24,19 @@ void ShaderManager::Init(void)
 
 	//Compile Wireframe shader
 	CompileShader(pFolder->GetFolderShaders() + "Simplex.vs", pFolder->GetFolderShaders() + "Wireframe.fs", "Wireframe");
-	
+
 	//Compile Simplex shader
 	CompileShader(pFolder->GetFolderShaders() + "Simplex.vs", pFolder->GetFolderShaders() + "Simplex.fs", "Simplex");
 
 	//Compile Line shader
 	CompileShader(pFolder->GetFolderShaders() + "Line.vs", pFolder->GetFolderShaders() + "Line.fs", "Line");
-			
+
 	printf("\n");
 }
 void ShaderManager::Release(void)
 {
 	int nShaders = static_cast<int>(m_vShader.size());
-	for(int nShader = 0; nShader < nShaders; nShader++)
+	for (int nShader = 0; nShader < nShaders; nShader++)
 	{
 		m_vShader[nShader].Release();
 	}
@@ -45,7 +45,7 @@ void ShaderManager::Release(void)
 }
 ShaderManager* ShaderManager::GetInstance()
 {
-	if(m_pInstance == nullptr)
+	if (m_pInstance == nullptr)
 	{
 		m_pInstance = new ShaderManager();
 	}
@@ -53,22 +53,22 @@ ShaderManager* ShaderManager::GetInstance()
 }
 void ShaderManager::ReleaseInstance()
 {
-	if(m_pInstance != nullptr)
+	if (m_pInstance != nullptr)
 	{
 		delete m_pInstance;
 		m_pInstance = nullptr;
 	}
 }
 //The big 3
-ShaderManager::ShaderManager(){Init();}
-ShaderManager::ShaderManager(ShaderManager const& other){}
-ShaderManager& ShaderManager::operator=(ShaderManager const& other) {	return *this; }
-ShaderManager::~ShaderManager(){Release();};
+ShaderManager::ShaderManager() { Init(); }
+ShaderManager::ShaderManager(ShaderManager const& other) {}
+ShaderManager& ShaderManager::operator=(ShaderManager const& other) { return *this; }
+ShaderManager::~ShaderManager() { Release(); };
 //--- Non Standard Singleton Methods
 GLuint ShaderManager::CompileShader(String a_sVertexShader, String a_sFragmentShader, String a_sName)
 {
 	int nShader = IdentifyShader(a_sName);
-	if(nShader != -1)
+	if (nShader != -1)
 		return nShader;
 
 	Shader vShader;
@@ -83,14 +83,14 @@ GLuint ShaderManager::CompileShader(String a_sVertexShader, String a_sFragmentSh
 int ShaderManager::IdentifyShader(String a_sName)
 {
 	auto var = m_map.find(a_sName);
-	if(var != m_map.end())
+	if (var != m_map.end())
 		return var->second;
 	return -1;
 }
 GLuint ShaderManager::GetShaderID(String a_sName)
 {
 	int nIndex = IdentifyShader(a_sName);
-	if(nIndex == -1)
+	if (nIndex == -1)
 		return 0;
 	else
 		return m_vShader[nIndex].GetProgramID();
@@ -98,7 +98,7 @@ GLuint ShaderManager::GetShaderID(String a_sName)
 
 GLuint ShaderManager::GetShaderID(uint a_uIndex)
 {
-	if(a_uIndex < 0 || a_uIndex >= m_uShaderCount)
+	if (a_uIndex < 0 || a_uIndex >= m_uShaderCount)
 		return 0;
 
 	return m_vShader[a_uIndex].GetProgramID();

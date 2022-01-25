@@ -3,25 +3,25 @@ using namespace BTX;
 //  Camera
 void Camera::MoveForward(float a_fDistance)
 {
-	//TODO:: replace the parent code with internal functionality 
+	//TODO:: replace the parent code with internal functionality
 	//Tip:: Moving will modify both positional and directional vectors
 	super::MoveForward(a_fDistance);
 }
 void Camera::MoveVertical(float a_fDistance)
 {
-	//TODO:: replace the parent code with internal functionality 
+	//TODO:: replace the parent code with internal functionality
 	//Tip:: Moving will modify both positional and directional vectors
 	super::MoveSideways(a_fDistance);
 }
 void Camera::MoveSideways(float a_fDistance)
 {
-	//TODO:: replace the parent code with internal functionality 
+	//TODO:: replace the parent code with internal functionality
 	//Tip:: Moving will modify both positional and directional vectors
 	super::MoveSideways(a_fDistance);
 }
 void Camera::SetPositionTargetAndUpward(vector3 a_v3Position, vector3 a_v3Target, vector3 a_v3Upward)
 {
-	//TODO:: replace the parent code with internal functionality 
+	//TODO:: replace the parent code with internal functionality
 	//Tip: Changing any positional vector forces you to calculate new directional ones
 	super::SetPositionTargetAndUpward(a_v3Position, a_v3Target, a_v3Upward);
 
@@ -45,8 +45,8 @@ void Camera::Init(vector3 a_v3Position, vector3 a_v3Target, vector3 a_v3Upward)
 	m_v2NearFar = vector2(0.001f, 1000.0f);
 	m_v3PitchYawRoll = vector3(0.0f);
 	SystemSingleton* pSystem = SystemSingleton::GetInstance();
-	vector2 v3WidthHeigh(	static_cast<float>(pSystem->GetWindowWidth()),
-							static_cast<float>(pSystem->GetWindowHeight()));
+	vector2 v3WidthHeigh(static_cast<float>(pSystem->GetWindowWidth()),
+		static_cast<float>(pSystem->GetWindowHeight()));
 	SetWidthAndHeightOfDisplay(v3WidthHeigh);
 
 	return SetPositionTargetAndUpward(a_v3Position, a_v3Target, a_v3Upward);
@@ -74,7 +74,7 @@ void Camera::Swap(Camera& other)
 	std::swap(m_m4Projection, other.m_m4Projection);
 	std::swap(m_m4View, other.m_m4View);
 }
-void Camera::Release(void){}
+void Camera::Release(void) {}
 //The big 3
 Camera::Camera()
 {
@@ -118,22 +118,22 @@ Camera& Camera::operator=(Camera const& other)
 	}
 	return *this;
 }
-Camera::~Camera(){ Release(); };
+Camera::~Camera() { Release(); };
 //Accessors
-vector3 Camera::GetPosition(void){ return m_v3Position; }
+vector3 Camera::GetPosition(void) { return m_v3Position; }
 vector3 Camera::GetForward(void) { return m_v3Forward; }
 vector3 Camera::GetUpward(void) { return m_v3Upward; }
 vector3 Camera::GetRightward(void) { return m_v3Rightward; }
 void Camera::SetForward(vector3 a_v3Input) { m_v3Forward = a_v3Input; }
 void Camera::SetUpward(vector3 a_v3Input) { m_v3Upward = a_v3Input; }
 void Camera::SetRightward(vector3 a_v3Input) { m_v3Rightward = a_v3Input; }
-matrix4 Camera::GetViewMatrix(void){ CalculateView(); return m_m4View; }
-matrix4 Camera::GetProjectionMatrix(void){ CalculateProjection(); return m_m4Projection; }
-void Camera::SetNearFarPlanes(float a_fNear, float a_fFar){ m_v2NearFar = vector2(a_fNear, a_fFar); }
-void Camera::SetFOV(float a_fFOV){ m_fFOV = a_fFOV; }
-void Camera::SetFPS(bool a_bFPS){ m_bFPS = a_bFPS; }
-void Camera::SetCameraMode(BTXs::eCAMERAMODE a_nMode){ m_nMode = a_nMode; ResetCamera(); }
-BTXs::eCAMERAMODE Camera::GetCameraMode(void){ return m_nMode; }
+matrix4 Camera::GetViewMatrix(void) { CalculateView(); return m_m4View; }
+matrix4 Camera::GetProjectionMatrix(void) { CalculateProjection(); return m_m4Projection; }
+void Camera::SetNearFarPlanes(float a_fNear, float a_fFar) { m_v2NearFar = vector2(a_fNear, a_fFar); }
+void Camera::SetFOV(float a_fFOV) { m_fFOV = a_fFOV; }
+void Camera::SetFPS(bool a_bFPS) { m_bFPS = a_bFPS; }
+void Camera::SetCameraMode(BTXs::eCAMERAMODE a_nMode) { m_nMode = a_nMode; ResetCamera(); }
+BTXs::eCAMERAMODE Camera::GetCameraMode(void) { return m_nMode; }
 void Camera::SetPosition(vector3 a_v3Position)
 {
 	return SetPositionTargetAndUpward(a_v3Position, m_v3Target, m_v3Upward);
@@ -158,8 +158,8 @@ matrix4 Camera::GetVP(void)
 void Camera::CalculateProjection(void)
 {
 	SystemSingleton* pSystem = SystemSingleton::GetInstance();
-	vector2 v3WidthHeigh(	static_cast<float>(pSystem->GetWindowWidth()),
-							static_cast<float>(pSystem->GetWindowHeight()));
+	vector2 v3WidthHeigh(static_cast<float>(pSystem->GetWindowWidth()),
+		static_cast<float>(pSystem->GetWindowHeight()));
 	SetWidthAndHeightOfDisplay(v3WidthHeigh);
 	float fRatio = v3WidthHeigh.x / v3WidthHeigh.y;
 	float fPos = 0;

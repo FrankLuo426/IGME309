@@ -3,12 +3,12 @@
 AppClass::AppClass(std::string a_windowName) : m_sWindowName(a_windowName) {}
 AppClass::AppClass(AppClass const& input) {}
 AppClass& AppClass::operator=(AppClass const& input) { return *this; }
-AppClass::~AppClass(void){ Release(); }
+AppClass::~AppClass(void) { Release(); }
 void AppClass::Run(void)
 {
 	//Initialize the system with the fields recollected by the constructor
 	Init();
-	
+
 	//Set the background color
 	glClearColor(0.392f, 0.584f, 0.929f, 1.0f);
 
@@ -82,7 +82,7 @@ void AppClass::InitVariables(void)
 	//vertex 3
 	lVertex.push_back(vector3(0.0f, 0.25f, 0.0f)); //position
 	lVertex.push_back(vector3(0.0f, 0.0f, 1.0f)); //color
-	
+
 	glGenVertexArrays(1, &m_uVAO);//Generate vertex array object
 	glGenBuffers(1, &m_uVBO);//Generate Vertex Buffered Object
 
@@ -94,7 +94,7 @@ void AppClass::InitVariables(void)
 
 	//count the attributes
 	int attributeCount = 2;
-	
+
 	// Position attribute
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, attributeCount * sizeof(vector3), (GLvoid*)0);
@@ -118,7 +118,7 @@ void AppClass::ProcessKeyboard(sf::Event a_event)
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		m_m4Model = glm::translate(m_m4Model, vector3(-0.1f, 0.0f, 0.0f));
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		m_m4Model = glm::translate(m_m4Model, vector3( 0.1f, 0.0f, 0.0f));
+		m_m4Model = glm::translate(m_m4Model, vector3(0.1f, 0.0f, 0.0f));
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 		m_m4Model = glm::translate(m_m4Model, vector3(0.0f, -0.1f, 0.0f));
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -136,7 +136,7 @@ void AppClass::Display(void)
 	//read uniforms and send values
 	GLuint MVP = glGetUniformLocation(m_uShaderProgramID, "MVP");//Model View Projection
 	glUniformMatrix4fv(MVP, 1, GL_FALSE, glm::value_ptr(m4Projection * m4View * m_m4Model));
-	
+
 	GLuint SolidColor = glGetUniformLocation(m_uShaderProgramID, "SolidColor"); //custom color of the shape
 	glUniform3f(SolidColor, m_v3Color.r, m_v3Color.g, m_v3Color.b);
 

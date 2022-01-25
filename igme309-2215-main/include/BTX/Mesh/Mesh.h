@@ -169,7 +169,7 @@ namespace BTX
 			vector3 a_v3CameraPosition = vector3(0), int a_RenderOption = eBTX_RENDER::RENDER_SOLID);
 
 		/*
-		USAGE: Renders the mesh 
+		USAGE: Renders the mesh
 		ARGUMENTS:
 		-	vector3 a_v3CameraPosition -> Position of the camera in world space
 		-	matrix4 a_mProjection -> Projection matrix
@@ -744,8 +744,6 @@ namespace BTX
 		*/
 		void GenerateLine(vector3 a_v3Start, vector3 a_v3End, vector3 a_v3ColorStart, vector3 a_v3ColorEnd);
 
-
-
 		/*
 		USAGE: returns the static count of meshes
 		ARGUMENTS: ---
@@ -772,7 +770,6 @@ namespace BTX
 
 	//EXPIMP_TEMPLATE template class BTXDLL std::vector<Mesh>;
 	EXPIMP_TEMPLATE template class BTXDLL std::vector<Mesh*>;
-
 } //namespace BTX
 
 #endif //__MESHCLASS_H_

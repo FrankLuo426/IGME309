@@ -3,7 +3,7 @@ using namespace BTX;
 TextureManager* TextureManager::m_pInstance = nullptr;
 TextureManager* TextureManager::GetInstance(void)
 {
-	if(m_pInstance == nullptr)
+	if (m_pInstance == nullptr)
 	{
 		m_pInstance = new TextureManager();
 	}
@@ -15,7 +15,7 @@ TextureManager& TextureManager::operator=(const TextureManager& other) { return 
 TextureManager::~TextureManager(void) { Release(); }
 void TextureManager::ReleaseInstance()
 {
-	if(m_pInstance != nullptr)
+	if (m_pInstance != nullptr)
 	{
 		delete m_pInstance;
 		m_pInstance = nullptr;
@@ -25,10 +25,10 @@ void TextureManager::ReleaseInstance()
 void TextureManager::Release(void)
 {
 	int nTextures = static_cast<int>(m_textureList.size());
-	for(int nTexture = 0; nTexture < nTextures; nTexture++)
+	for (int nTexture = 0; nTexture < nTextures; nTexture++)
 	{
 		Texture* mTemp = m_textureList[nTexture];
-		if(mTemp != nullptr)
+		if (mTemp != nullptr)
 		{
 			delete mTemp;
 			mTemp = nullptr;
@@ -50,7 +50,7 @@ int TextureManager::IdentifyTexure(String a_sName)
 	}
 
 	auto var = m_map.find(a_sName);
-	if(var != m_map.end())
+	if (var != m_map.end())
 		return var->second;
 	return -1;
 }
@@ -59,7 +59,7 @@ int TextureManager::LoadTexture(String a_sName)
 	if ("NULL" == a_sName || " " == a_sName || "null" == a_sName || "Null" == a_sName)
 		return -1;
 	int nTexture = IdentifyTexure(a_sName);
-	if(nTexture == -1)
+	if (nTexture == -1)
 	{
 		Texture* pTextureTemp = new Texture();
 		if (pTextureTemp->LoadTexture(a_sName))
@@ -106,7 +106,7 @@ void TextureManager::SaveScreenshot(String a_sTextureName)
 	delete[] pixels;
 }
 //Accessors
-int TextureManager::GetTextureCount(void){return static_cast<int> (m_textureList.size());}
+int TextureManager::GetTextureCount(void) { return static_cast<int> (m_textureList.size()); }
 GLuint TextureManager::ReturnGLIndex(uint a_nIndex)
 {
 	//if index is out of bounds return unbound

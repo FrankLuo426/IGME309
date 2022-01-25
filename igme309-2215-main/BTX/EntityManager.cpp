@@ -19,7 +19,7 @@ void EntityManager::Release(void)
 }
 EntityManager* EntityManager::GetInstance()
 {
-	if(m_pInstance == nullptr)
+	if (m_pInstance == nullptr)
 	{
 		m_pInstance = new EntityManager();
 	}
@@ -27,7 +27,7 @@ EntityManager* EntityManager::GetInstance()
 }
 void EntityManager::ReleaseInstance()
 {
-	if(m_pInstance != nullptr)
+	if (m_pInstance != nullptr)
 	{
 		delete m_pInstance;
 		m_pInstance = nullptr;
@@ -45,7 +45,7 @@ int EntityManager::GetEntityIndex(String a_sUniqueID)
 	return -1;
 }
 //Accessors
-uint EntityManager::GetEntityCount(void) {	return m_uEntityCount; }
+uint EntityManager::GetEntityCount(void) { return m_uEntityCount; }
 Model* EntityManager::GetModel(uint a_uIndex)
 {
 	//if the list is empty return
@@ -160,10 +160,10 @@ void EntityManager::SetModelMatrix(matrix4 a_m4ToWorld, uint a_uIndex)
 	m_mEntityArray[a_uIndex]->SetModelMatrix(a_m4ToWorld);
 }
 //The big 3
-EntityManager::EntityManager(){Init();}
-EntityManager::EntityManager(EntityManager const& a_pOther){ }
+EntityManager::EntityManager() { Init(); }
+EntityManager::EntityManager(EntityManager const& a_pOther) { }
 EntityManager& EntityManager::operator=(EntityManager const& a_pOther) { return *this; }
-EntityManager::~EntityManager(){Release();};
+EntityManager::~EntityManager() { Release(); };
 // other methods
 void EntityManager::Update(void)
 {
@@ -172,7 +172,7 @@ void EntityManager::Update(void)
 	{
 		m_mEntityArray[i]->ClearCollisionList();
 	}
-	
+
 	//check collisions
 	for (uint i = 0; i < m_uEntityCount; i++)
 	{
@@ -243,7 +243,7 @@ void EntityManager::RemoveEntity(uint a_uIndex)
 	{
 		std::swap(m_mEntityArray[a_uIndex], m_mEntityArray[m_uEntityCount - 1]);
 	}
-	
+
 	//and then pop the last one
 	//create a new temp array with one less entry
 	PEntity* tempArray = new PEntity[m_uEntityCount - 1];
@@ -444,7 +444,7 @@ void EntityManager::ApplyForce(vector3 a_v3Force, String a_sUniqueID)
 	//Get the entity
 	Entity* pTemp = Entity::GetEntity(a_sUniqueID);
 	//if the entity does not exists return
-	if(pTemp)
+	if (pTemp)
 		pTemp->ApplyForce(a_v3Force);
 	return;
 }

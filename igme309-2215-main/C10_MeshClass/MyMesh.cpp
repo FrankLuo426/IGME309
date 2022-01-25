@@ -132,7 +132,6 @@ void MyMesh::CompileOpenGL3X(void)
 
 void MyMesh::Render(matrix4 a_mProjection, matrix4 a_mView, matrix4 a_mModel)
 {
-
 	if (!m_bBinded)
 		return;
 
@@ -172,7 +171,7 @@ void MyMesh::AddTri(vector3 a_vBottomLeft, vector3 a_vBottomRight, vector3 a_vTo
 	//C
 	//| \
 		//A--B
-//This will make the triangle A->B->C 
+//This will make the triangle A->B->C
 	AddVertexPosition(a_vBottomLeft);
 	AddVertexPosition(a_vBottomRight);
 	AddVertexPosition(a_vTopLeft);

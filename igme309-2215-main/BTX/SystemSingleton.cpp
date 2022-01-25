@@ -83,7 +83,6 @@ void SystemSingleton::Init(void)
 
 	m_sAppName = GetProgramName();
 
-
 	m_bWindowFullscreen = false;
 	m_bWindowBorderless = false;
 

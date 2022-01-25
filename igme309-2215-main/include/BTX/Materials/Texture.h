@@ -27,14 +27,14 @@ namespace BTX
 		OUTPUT: class object
 		*/
 		Texture(void);
-		
+
 		/*
 		USAGE: Copy Constructor
 		ARGUMENTS:
 		OUTPUT:
 		*/
 		Texture(const Texture& other);
-		
+
 		/*
 		USAGE: Copy Assignment Operator
 		ARGUMENTS:

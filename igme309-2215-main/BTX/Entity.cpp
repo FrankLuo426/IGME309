@@ -6,7 +6,7 @@ Solver* Entity::GetSolver(void) { return m_pSolver; }
 bool Entity::HasThisRigidBody(RigidBody* a_pRigidBody) { return m_pRigidBody == a_pRigidBody; }
 RigidBody::PRigidBody* Entity::GetColliderArray(void) { return m_pRigidBody->GetColliderArray(); }
 uint Entity::GetCollidingCount(void) { return m_pRigidBody->GetCollidingCount(); }
-matrix4 Entity::GetModelMatrix(void){ return m_m4ToWorld; }
+matrix4 Entity::GetModelMatrix(void) { return m_m4ToWorld; }
 void Entity::SetModelMatrix(matrix4 a_m4ToWorld)
 {
 	if (!m_bInMemory)
@@ -28,12 +28,12 @@ void Entity::SetModelMatrix(matrix4 a_m4ToWorld)
 
 	//m_pSolver->SetPosition(vector3(m_m4ToWorld[3]));
 }
-Model* Entity::GetModel(void){return m_pModel;}
-RigidBody* Entity::GetRigidBody(void){	return m_pRigidBody; }
-bool Entity::IsInitialized(void){ return m_bInMemory; }
+Model* Entity::GetModel(void) { return m_pModel; }
+RigidBody* Entity::GetRigidBody(void) { return m_pRigidBody; }
+bool Entity::IsInitialized(void) { return m_bInMemory; }
 String Entity::GetUniqueID(void) { return m_sUniqueID; }
 void Entity::SetAxisVisible(bool a_bSetAxis) { m_bSetAxis = a_bSetAxis; }
-void Entity::SetPosition(vector3 a_v3Position) { if(m_pSolver) m_pSolver->SetPosition(a_v3Position); }
+void Entity::SetPosition(vector3 a_v3Position) { if (m_pSolver) m_pSolver->SetPosition(a_v3Position); }
 vector3 Entity::GetPosition(void)
 {
 	if (m_pSolver != nullptr)
@@ -88,7 +88,7 @@ void Entity::Swap(Entity& other)
 void Entity::Release(void)
 {
 	m_pModelMngr = nullptr;
-	//it is not the job of the entity to release the model, 
+	//it is not the job of the entity to release the model,
 	//it is for the mesh manager to do so.
 	m_pModel = nullptr;
 	if (m_DimensionArray)
@@ -141,7 +141,7 @@ Entity::Entity(Entity const& other)
 	m_bInMemory = other.m_bInMemory;
 	m_pModel = other.m_pModel;
 	//generate a new rigid body we do not share the same rigid body as we do the model
-	m_pRigidBody = new RigidBody(m_pModel->GetVertexList()); 
+	m_pRigidBody = new RigidBody(m_pModel->GetVertexList());
 	m_m4ToWorld = other.m_m4ToWorld;
 	m_pModelMngr = other.m_pModelMngr;
 	m_sUniqueID = other.m_sUniqueID;
@@ -152,7 +152,7 @@ Entity::Entity(Entity const& other)
 }
 Entity& Entity::operator=(Entity const& other)
 {
-	if(this != &other)
+	if (this != &other)
 	{
 		Release();
 		Init();
@@ -161,7 +161,7 @@ Entity& Entity::operator=(Entity const& other)
 	}
 	return *this;
 }
-Entity::~Entity(){Release();}
+Entity::~Entity() { Release(); }
 //--- Methods
 void Entity::AddToRenderList(bool a_bDrawRigidBody)
 {
@@ -171,9 +171,9 @@ void Entity::AddToRenderList(bool a_bDrawRigidBody)
 
 	//draw model
 	m_pModel->AddToRenderList(m_m4ToWorld);
-	
+
 	//draw rigid body
-	if(a_bDrawRigidBody)
+	if (a_bDrawRigidBody)
 		m_pRigidBody->AddToRenderList();
 
 	if (m_bSetAxis)
@@ -209,7 +209,7 @@ void Entity::AddDimension(uint a_uDimension)
 	//insert the entry
 	uint* pTemp;
 	pTemp = new uint[m_nDimensionCount + 1];
-	if(m_DimensionArray)
+	if (m_DimensionArray)
 	{
 		memcpy(pTemp, m_DimensionArray, sizeof(uint) * m_nDimensionCount);
 		delete[] m_DimensionArray;
@@ -239,12 +239,12 @@ void Entity::RemoveDimension(uint a_uDimension)
 			pTemp = new uint[m_nDimensionCount - 1];
 			if (m_DimensionArray)
 			{
-				memcpy(pTemp, m_DimensionArray, sizeof(uint) * (m_nDimensionCount-1));
+				memcpy(pTemp, m_DimensionArray, sizeof(uint) * (m_nDimensionCount - 1));
 				delete[] m_DimensionArray;
 				m_DimensionArray = nullptr;
 			}
 			m_DimensionArray = pTemp;
-			
+
 			--m_nDimensionCount;
 			SortDimensions();
 			return;
@@ -272,14 +272,13 @@ bool Entity::IsInDimension(uint a_uDimension)
 }
 bool Entity::SharesDimension(Entity* const a_pOther)
 {
-	
 	//special case: if there are no dimensions on either Entity
 	//then they live in the special global dimension
 	if (0 == m_nDimensionCount)
 	{
-		//if no spatial optimization all cases should fall here as every 
+		//if no spatial optimization all cases should fall here as every
 		//entity is by default, under the special global dimension only
-		if(0 == a_pOther->m_nDimensionCount)
+		if (0 == a_pOther->m_nDimensionCount)
 			return true;
 	}
 

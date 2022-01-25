@@ -21,10 +21,10 @@ namespace BTX
 		String m_sMaterialAppend = ""; //Name of the material based on the file
 
 	public:
-		
+
 		/*
 		Usage: Constructor
-		Arguments: 
+		Arguments:
 		-	String a_sFileName -> Name to give the model or file to load if a_bIsModelFile = true
 		-	bool a_bIsModelFile -> Is a_sFileName the name of a file to load?
 		Output: class object instance
@@ -89,7 +89,7 @@ namespace BTX
 		void SetName(String a_sName);
 
 		/*
-		USAGE: 
+		USAGE:
 		ARGUMENTS: ---
 		OUTPUT: ---
 		*/
@@ -109,14 +109,14 @@ namespace BTX
 		std::vector<matrix4> GetRenderListWires(void);
 		/*
 		Usage: Renders both wire and solid lists
-		Arguments: 
-			matrix4 a_m4Projection, 
-			matrix4 a_m4View, 
+		Arguments:
+			matrix4 a_m4Projection,
+			matrix4 a_m4View,
 			vector3 a_v3CameraPosition
 		Output: ---
 		*/
 		uint RenderLists(matrix4 a_m4Projection, matrix4 a_m4View, vector3 a_v3CameraPosition);
-		
+
 		/*
 		Usage: Will remove the objects from both render lists
 		Arguments: ---

@@ -3,12 +3,12 @@
 AppClass::AppClass(std::string a_windowName) : m_sWindowName(a_windowName) {}
 AppClass::AppClass(AppClass const& input) {}
 AppClass& AppClass::operator=(AppClass const& input) { return *this; }
-AppClass::~AppClass(void){ Release(); }
+AppClass::~AppClass(void) { Release(); }
 void AppClass::Run(void)
 {
 	//Initialize the system with the fields recollected by the constructor
 	Init();
-	
+
 	//Set the background color
 	glClearColor(0.392f, 0.584f, 0.929f, 1.0f);
 
@@ -81,7 +81,7 @@ void AppClass::InitVariables(void)
 	// Create Vertex Array Object
 	glGenVertexArrays(1, &m_uVAO);
 	glBindVertexArray(m_uVAO);
-		
+
 	// Create Vertex Buffer Object
 	glGenBuffers(1, &m_uVBO);
 	glBindBuffer(GL_ARRAY_BUFFER, m_uVBO);

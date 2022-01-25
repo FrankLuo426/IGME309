@@ -1,7 +1,7 @@
 #include "BTX\materials\Material.h"
 using namespace BTX;
 
-Material::Material(String a_sName): m_sName(a_sName) { Init(); }
+Material::Material(String a_sName) : m_sName(a_sName) { Init(); }
 Material::Material(const Material& other)
 {
 	m_sName = other.m_sName;
@@ -19,7 +19,7 @@ Material::Material(const Material& other)
 }
 Material& Material::operator=(const Material& other)
 {
-	if(this != &other)
+	if (this != &other)
 	{
 		Release();
 		m_sName = other.m_sName;
@@ -38,7 +38,7 @@ Material& Material::operator=(const Material& other)
 	return *this;
 }
 Material::~Material(void) { Release(); }
-	
+
 void Material::Release(void)
 {
 	m_pSystem = nullptr;
@@ -54,17 +54,17 @@ void Material::Init(void)
 	m_sMapDiffuse = "NULL";
 	m_sMapNormal = "NULL";
 	m_sMapSpecular = "NULL";
-	m_vKd = vector3( 0.5f, 0.5f, 0.5f);
+	m_vKd = vector3(0.5f, 0.5f, 0.5f);
 }
 void Material::SetName(String a_sName) { m_sName = a_sName; }
 String Material::GetName(void) { return m_sName; }
 
 //Diffuse
-GLuint Material::GetDiffuseMap(void) {	return m_nMapDiffuse; }
+GLuint Material::GetDiffuseMap(void) { return m_nMapDiffuse; }
 void Material::SetDiffuseMapID(GLuint a_uID) { m_nMapDiffuse = a_uID; }
 
 void Material::SetDiffuseMapName(String a_sFileName) { m_sMapDiffuse = a_sFileName; m_vKd = vector3(1, 0, 1); }
-String Material::GetDiffuseMapName(void) {	return m_sMapDiffuse; }
+String Material::GetDiffuseMapName(void) { return m_sMapDiffuse; }
 
 vector3 Material::GetDiffuse(void) { return m_vKd; }
 void Material::SetDiffuse(vector3 a_Kd) { m_vKd = a_Kd; }
@@ -81,14 +81,13 @@ void Material::SetSpecularMapName(String a_sFileName) { m_sMapSpecular = a_sFile
 String Material::GetSpecularMapName(void) { return m_sMapSpecular; }
 void Material::SetSpecularMapID(GLuint a_uID) { m_nMapSpecular = a_uID; }
 
-
 eBTX_OUTPUT Material::LoadDiffuse(String a_sFileName)
 {
 	m_sMapDiffuse = a_sFileName;
 
 	m_nMapDiffuse = m_pTextureMngr->ReturnGLIndex(
-			m_pTextureMngr->LoadTexture(a_sFileName));
-	if(m_nMapDiffuse == -1)
+		m_pTextureMngr->LoadTexture(a_sFileName));
+	if (m_nMapDiffuse == -1)
 		return eBTX_OUTPUT::OUT_ERR_FILE_MISSING;
 
 	return OUT_ERR_NONE;
@@ -98,8 +97,8 @@ eBTX_OUTPUT Material::LoadNormal(String a_sFileName)
 	m_sMapNormal = a_sFileName;
 
 	m_nMapNormal = m_pTextureMngr->ReturnGLIndex(
-			m_pTextureMngr->LoadTexture(a_sFileName));
-	if(m_nMapNormal == -1)
+		m_pTextureMngr->LoadTexture(a_sFileName));
+	if (m_nMapNormal == -1)
 		return OUT_ERR_FILE_MISSING;
 
 	return eBTX_OUTPUT::OUT_ERR_NONE;
@@ -109,8 +108,8 @@ eBTX_OUTPUT Material::LoadSpecular(String a_sFileName)
 	m_sMapSpecular = a_sFileName;
 
 	m_nMapSpecular = m_pTextureMngr->ReturnGLIndex(
-			m_pTextureMngr->LoadTexture(a_sFileName));
-	if(m_nMapSpecular == -1)
+		m_pTextureMngr->LoadTexture(a_sFileName));
+	if (m_nMapSpecular == -1)
 		return OUT_ERR_FILE_MISSING;
 
 	return eBTX_OUTPUT::OUT_ERR_NONE;
@@ -141,7 +140,7 @@ eBTX_OUTPUT Material::LoadMaps()
 			String sModel = FileReader::GetFileName(m_sName);
 			nDiffuse = m_pTextureMngr->LoadTexture(sAbsoluteRoute + sModel + ".fbm\\" + m_sMapDiffuse);
 		}
-		
+
 		//if we could not find it try it from the default texture folder
 		if (nDiffuse < 0)
 			nDiffuse = m_pTextureMngr->LoadTexture(m_sMapDiffuse);
@@ -211,16 +210,16 @@ eBTX_OUTPUT Material::LoadMaps()
 	//----------------------------------------------------------------------------------
 
 	//Diffuse
-	m_nMapDiffuse = m_pTextureMngr->ReturnGLIndex( nDiffuse	);
+	m_nMapDiffuse = m_pTextureMngr->ReturnGLIndex(nDiffuse);
 
 	//Normal
-	m_nMapNormal = m_pTextureMngr->ReturnGLIndex( nNormal );
+	m_nMapNormal = m_pTextureMngr->ReturnGLIndex(nNormal);
 
 	//Specular
-	m_nMapSpecular = m_pTextureMngr->ReturnGLIndex( nSpecular );
+	m_nMapSpecular = m_pTextureMngr->ReturnGLIndex(nSpecular);
 
-	if(m_nMapNormal == -1 || m_nMapDiffuse == -1)
+	if (m_nMapNormal == -1 || m_nMapDiffuse == -1)
 		return eBTX_OUTPUT::OUT_ERR_FILE_MISSING;
-	
+
 	return eBTX_OUTPUT::OUT_ERR_NONE;
 }

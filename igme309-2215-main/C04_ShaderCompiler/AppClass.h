@@ -13,7 +13,7 @@ Date : 2018 / 01
 #include <SFML/Window.hpp>
 #include <SFML/OpenGL.hpp>
 
-class AppClass 
+class AppClass
 {
 	std::string m_sWindowName = ""; //window name
 	sf::Window* m_pWindow = nullptr; //SFML window
@@ -21,7 +21,7 @@ class AppClass
 	GLuint m_uVAO = 0; //Vertex Array Object
 	GLuint m_uVBO = 0; //Vertex Buffer Object
 	bool m_bRunning = true; //Running Flag
-		
+
 public:
 	/*
 	USAGE: Constructor

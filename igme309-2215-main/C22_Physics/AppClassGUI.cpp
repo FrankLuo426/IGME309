@@ -39,12 +39,12 @@ void Application::DrawGUI(void)
 		}
 		ImGui::End();
 	}
-	
+
 	//Controller Debugger
 	if (false) //if you want to enable the controller debugger window just make this true
 	{
 		ImGui::SetNextWindowPos(ImVec2(1088, 1), ImGuiSetCond_FirstUseEver);
-		ImGui::SetNextWindowSize(ImVec2(190,641), ImGuiSetCond_FirstUseEver);
+		ImGui::SetNextWindowSize(ImVec2(190, 641), ImGuiSetCond_FirstUseEver);
 		ImGui::SetNextWindowCollapsed(false, ImGuiSetCond_FirstUseEver);
 		ImGui::End();
 	}
@@ -170,7 +170,7 @@ bool Application::CreateFontsTexture()
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 
 	// Store our identifier
-	io.Fonts->TexID = (void *)(intptr_t)gui.m_uFontTexture;
+	io.Fonts->TexID = (void*)(intptr_t)gui.m_uFontTexture;
 
 	// Restore state
 	glBindTexture(GL_TEXTURE_2D, last_texture);
@@ -185,7 +185,7 @@ bool Application::CreateDeviceObjects()
 	glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &last_array_buffer);
 	glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
 
-	const GLchar *vertex_shader =
+	const GLchar* vertex_shader =
 		"#version 330\n"
 		"uniform mat4 ProjMtx;\n"
 		"in vec2 Position;\n"
@@ -267,17 +267,16 @@ void Application::NewFrame()
 	GLint m_viewport[4];
 	glGetIntegerv(GL_VIEWPORT, m_viewport);
 	io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
-	
+
 	io.DisplayFramebufferScale =
-	ImVec2(	width > 0 ? ((float)m_viewport[2] / width) : 0,
-	height > 0 ? ((float)m_viewport[3] / height) : 0);
-	
+		ImVec2(width > 0 ? ((float)m_viewport[2] / width) : 0,
+			height > 0 ? ((float)m_viewport[3] / height) : 0);
 
 	// Setup time step
 	float fDelta = m_pSystem->GetDeltaTime(gui.m_nClock);
 	io.DeltaTime = fDelta;
 	gui.m_dTimeTotal += fDelta;
-	
+
 	// Start the frame
 	ImGui::NewFrame();
 }
@@ -305,7 +304,7 @@ void Application::InitIMGUI(void)
 	io.KeyMap[ImGuiKey_X] = sf::Keyboard::X;
 	io.KeyMap[ImGuiKey_Y] = sf::Keyboard::Y;
 	io.KeyMap[ImGuiKey_Z] = sf::Keyboard::Z;
-		
+
 	// We are using the alternative; set this to NULL and call ImGui::GetDrawData() after ImGui::Render() to get the same ImDrawData pointer.
 	io.RenderDrawListsFn = NULL; // = RenderDrawListsFunction;
 	io.SetClipboardTextFn = NULL;

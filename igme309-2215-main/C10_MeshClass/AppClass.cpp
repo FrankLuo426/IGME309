@@ -54,13 +54,12 @@ void Application::Display(void)
 
 	//draw gui
 	DrawGUI();
-	
+
 	//end the current frame (internally swaps the front and back buffers)
 	m_pWindow->display();
 }
 void Application::Release(void)
 {
-
 	SafeDelete(m_pMesh1);
 	SafeDelete(m_pMesh2);
 
