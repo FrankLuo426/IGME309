@@ -12,6 +12,7 @@ void AppClass::Run(void)
 	//Set the background color
 	glClearColor(0.392f, 0.584f, 0.929f, 1.0f);
 
+
 	// run the main loop
 	while (m_bRunning)
 	{
@@ -67,7 +68,7 @@ void AppClass::InitOpenGL(void)
 }
 void AppClass::InitShaders(void)
 {
-	m_uShaderProgramID = LoadShaders("Shaders//BasicColor.vs", "Shaders//BasicColor.fs");
+	m_uShaderProgramID = LoadShaders("Shaders//BasicColor.vs", "Shaders//BasicColorCompliment.fs");
 	glUseProgram(m_uShaderProgramID);
 }
 void AppClass::InitVariables(void)
@@ -115,6 +116,8 @@ void AppClass::ProcessKeyboard(sf::Event a_event)
 		m_v3Color = glm::vec3(0.0f, 0.0f, 1.0f);
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0))
 		m_v3Color = glm::vec3(-1.0f, -1.0f, -1.0f);
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+		mbComp = !mbComp;
 }
 void AppClass::Display(void)
 {
@@ -124,6 +127,9 @@ void AppClass::Display(void)
 	//read uniforms and send values
 	GLuint SolidColor = glGetUniformLocation(m_uShaderProgramID, "SolidColor");
 	glUniform3f(SolidColor, m_v3Color.r, m_v3Color.g, m_v3Color.b);
+
+	GLuint isCompliment = glGetUniformLocation(m_uShaderProgramID, "isCompliment");
+	glUniform1i(isCompliment, mbComp);
 
 	//draw content
 	glDrawArrays(GL_TRIANGLES, 0, 3);

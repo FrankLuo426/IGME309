@@ -33,6 +33,8 @@ class AppClass
 
 	bool m_bRunning = true; //Running Flag
 
+	bool mbComp = false;
+
 public:
 	/*
 	USAGE: Constructor
