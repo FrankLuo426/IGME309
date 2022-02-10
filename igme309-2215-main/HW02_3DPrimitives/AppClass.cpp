@@ -101,16 +101,16 @@ void Application::Display(void)
 
 	// draw a skybox
 	m_pModelMngr->AddSkyboxToRenderList();
-	
+
 	//render list call
 	m_uRenderCallCount = m_pModelMngr->Render();
 
 	//clear the render list
 	m_pModelMngr->ClearRenderList();
-	
+
 	//draw gui
 	DrawGUI();
-	
+
 	//end the current frame (internally swaps the front and back buffers)
 	m_pWindow->display();
 }

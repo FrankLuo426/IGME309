@@ -101,7 +101,6 @@ void Application::Run(void)
 				m_bFocused = false;
 				break;
 			}
-			
 		}
 		ProcessKeyboard();//Continuous events
 		Update();

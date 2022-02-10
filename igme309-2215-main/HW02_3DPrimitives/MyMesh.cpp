@@ -61,7 +61,20 @@ void MyMesh::GenerateCone(float a_fRadius, float a_fHeight, int a_nSubdivisions,
 	Init();
 
 	// Replace this with your code
-	GenerateCube(a_fRadius * 2.0f, a_v3Color);
+	glm::vec3 topPoint = vector3(0, a_fHeight, 0);
+	glm::vec3 topTemp;
+	glm::vec3 bottomTemp;
+
+	//Bottom Circle
+
+	for (int i = 0; i <= a_nSubdivisions; i++)
+	{
+		topTemp = a_fRadius * vector3(cos(2 * PI * i / a_nSubdivisions), 0, sin(2 * PI * i / a_nSubdivisions));
+		AddTri(vector3(0, 0, 0), bottomTemp, topTemp);
+		AddTri(bottomTemp, topPoint, topTemp);
+		bottomTemp = topTemp;
+	}
+
 	// -------------------------------
 
 	// Adding information about color
@@ -85,8 +98,28 @@ void MyMesh::GenerateCylinder(float a_fRadius, float a_fHeight, int a_nSubdivisi
 	Init();
 
 	// Replace this with your code
-	GenerateCube(a_fRadius * 2.0f, a_v3Color);
-	// -------------------------------
+	glm::vec3 bottomLeft;
+	glm::vec3 bottomRight;
+	glm::vec3 topLeft;
+	glm::vec3 topRight;
+	glm::vec3 topPoint = vector3(0, a_fHeight, 0);
+	bottomLeft = vector3(a_fRadius * 1, 0, 0);
+	topLeft = vector3(a_fRadius * 1, a_fHeight, 0);
+	for (int i = 1; i <= a_nSubdivisions; i++)
+	{
+		//draw bottom circle
+		bottomRight = a_fRadius * vector3(cos(2 * PI * i / a_nSubdivisions), 0, sin(2 * PI * i / a_nSubdivisions));
+		AddTri(vector3(0, 0, 0), bottomLeft, bottomRight);
+
+		//draw top circle
+		topRight = vector3(a_fRadius * cos(2 * PI * i / a_nSubdivisions), a_fHeight, a_fRadius * sin(2 * PI * i / a_nSubdivisions));
+		AddTri(topPoint, topRight, topLeft);
+
+		//add quad
+		AddQuad(topLeft, topRight, bottomLeft, bottomRight);
+		bottomLeft = bottomRight;
+		topLeft = topRight;
+	}
 
 	// Adding information about color
 	CompleteMesh(a_v3Color);
@@ -115,8 +148,42 @@ void MyMesh::GenerateTube(float a_fOuterRadius, float a_fInnerRadius, float a_fH
 	Init();
 
 	// Replace this with your code
-	GenerateCube(a_fOuterRadius * 2.0f, a_v3Color);
 	// -------------------------------
+	//
+	glm::vec3 bottomRightIn;
+	glm::vec3 bottomLeftIn;
+	glm::vec3 bottomRightOut;
+	glm::vec3 bottomLeftOut;
+	glm::vec3 topRightIn;
+	glm::vec3 topLeftIn;
+	glm::vec3 topRightOut;
+	glm::vec3 topLeftOut;
+
+	topLeftOut = vector3(a_fOuterRadius * 1, a_fHeight, 0);
+	topLeftIn = vector3(a_fInnerRadius * 1, a_fHeight, 0);
+	bottomLeftOut = vector3(a_fOuterRadius * 1, 0, 0);
+	bottomLeftIn = vector3(a_fInnerRadius * 1, 0, 0);
+
+	for (int i = 1; i <= a_nSubdivisions; i++)
+	{
+		//bottom
+		bottomRightIn = vector3(a_fInnerRadius * cos(2 * PI * i / a_nSubdivisions), 0, a_fInnerRadius * sin(2 * PI * i / a_nSubdivisions));
+		bottomRightOut = vector3(a_fOuterRadius * cos(2 * PI * i / a_nSubdivisions), 0, a_fOuterRadius * sin(2 * PI * i / a_nSubdivisions));
+		AddQuad(bottomLeftOut, bottomRightOut, bottomLeftIn, bottomRightIn);
+		//top
+		topRightIn = vector3(a_fInnerRadius * cos(2 * PI * i / a_nSubdivisions), a_fHeight, a_fInnerRadius * sin(2 * PI * i / a_nSubdivisions));
+		topRightOut = vector3(a_fOuterRadius * cos(2 * PI * i / a_nSubdivisions), a_fHeight, a_fOuterRadius * sin(2 * PI * i / a_nSubdivisions));
+		AddQuad( topLeftIn, topRightIn, topLeftOut, topRightOut);
+		//Wall
+		AddQuad(topLeftOut, topRightOut, bottomLeftOut, bottomRightOut);
+		AddQuad(bottomLeftIn, bottomRightIn, topLeftIn, topRightIn);
+		
+
+		bottomLeftIn = bottomRightIn;
+		bottomLeftOut = bottomRightOut;
+		topLeftIn = topRightIn;
+		topLeftOut = topRightOut;
+	}
 
 	// Adding information about color
 	CompleteMesh(a_v3Color);
@@ -172,8 +239,41 @@ void MyMesh::GenerateSphere(float a_fRadius, int a_nSubdivisions, vector3 a_v3Co
 	Init();
 
 	// Replace this with your code
-	GenerateCube(a_fRadius * 2.0f, a_v3Color);
-	// -------------------------------
+	glm::vec3 bottom = vector3(0, 0, -a_fRadius);
+	glm::vec3 top = vector3(0, 0, 0);
+	std::vector<std::vector<vector3> > Points; //2D vector array to hold vector3 for x,y,z coords
+
+
+	//calculates and puts the x,y,z points into the 2D array
+	for (int i = 0; i < a_nSubdivisions; i++)
+	{
+		Points.push_back(std::vector<vector3>());
+		double theta = i * PI / a_nSubdivisions;
+		for (int j = -a_nSubdivisions; j < a_nSubdivisions; j++)
+		{
+			Points[i].push_back(top);
+			double phi = j * 2 * PI / a_nSubdivisions;
+			Points[i][j + a_nSubdivisions].x = a_fRadius * sin(theta) * cos(phi);
+			Points[i][j + a_nSubdivisions].y = a_fRadius * sin(theta) * sin(phi);
+			Points[i][j + a_nSubdivisions].z = a_fRadius * cos(theta);
+		}
+	}
+
+	//creates the sphere
+	for (unsigned int i = 1; i < a_nSubdivisions; i++)
+	{
+		for (int j = 0; j <= a_nSubdivisions + 1; j++)
+		{
+			AddTri(Points[i][j], Points[i][j + 1], Points[i - 1][j]);
+			AddTri(Points[i][j + 1], Points[i - 1][j + 1], Points[i - 1][j]);
+
+			//makes the bottom end
+			if (i == a_nSubdivisions - 1)
+			{
+				AddTri(Points[i][j + 1], Points[i][j], bottom);
+			}
+		}
+	}
 
 	// Adding information about color
 	CompleteMesh(a_v3Color);
@@ -184,7 +284,7 @@ void MyMesh::AddTri(vector3 a_vBottomLeft, vector3 a_vBottomRight, vector3 a_vTo
 	//C
 	//| \
 	//A--B
-	//This will make the triangle A->B->C 
+	//This will make the triangle A->B->C
 	AddVertexPosition(a_vBottomLeft);
 	AddVertexPosition(a_vBottomRight);
 	AddVertexPosition(a_vTopLeft);
@@ -325,7 +425,7 @@ void MyMesh::Render(matrix4 a_mProjection, matrix4 a_mView, matrix4 a_mModel)
 {
 	// Use the buffer and shader
 	GLuint nShader = m_pShaderMngr->GetShaderID("Basic");
-	glUseProgram(nShader); 
+	glUseProgram(nShader);
 
 	//Bind the VAO of this object
 	glBindVertexArray(m_VAO);
@@ -337,11 +437,11 @@ void MyMesh::Render(matrix4 a_mProjection, matrix4 a_mView, matrix4 a_mModel)
 	//Final Projection of the Camera
 	matrix4 m4MVP = a_mProjection * a_mView * a_mModel;
 	glUniformMatrix4fv(MVP, 1, GL_FALSE, glm::value_ptr(m4MVP));
-	
+
 	//Solid
 	glUniform3f(wire, -1.0f, -1.0f, -1.0f);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	glDrawArrays(GL_TRIANGLES, 0, m_uVertexCount);  
+	glDrawArrays(GL_TRIANGLES, 0, m_uVertexCount);
 
 	//Wire
 	glUniform3f(wire, 1.0f, 0.0f, 1.0f);
