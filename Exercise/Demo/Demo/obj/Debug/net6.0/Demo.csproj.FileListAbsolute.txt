@@ -1,0 +1,15 @@
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\bin\Debug\net6.0\Demo.exe
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\bin\Debug\net6.0\Demo.deps.json
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\bin\Debug\net6.0\Demo.runtimeconfig.json
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\bin\Debug\net6.0\Demo.dll
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\bin\Debug\net6.0\ref\Demo.dll
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\bin\Debug\net6.0\Demo.pdb
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\obj\Debug\net6.0\Demo.csproj.AssemblyReference.cache
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\obj\Debug\net6.0\Demo.GeneratedMSBuildEditorConfig.editorconfig
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\obj\Debug\net6.0\Demo.AssemblyInfoInputs.cache
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\obj\Debug\net6.0\Demo.AssemblyInfo.cs
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\obj\Debug\net6.0\Demo.csproj.CoreCompileInputs.cache
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\obj\Debug\net6.0\Demo.dll
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\obj\Debug\net6.0\ref\Demo.dll
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\obj\Debug\net6.0\Demo.pdb
+F:\Google Drive\学术\IGME 309\IGME309\Exercise\Demo\Demo\obj\Debug\net6.0\Demo.genruntimeconfig.cache

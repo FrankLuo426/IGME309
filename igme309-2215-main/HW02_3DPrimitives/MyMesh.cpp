@@ -173,11 +173,10 @@ void MyMesh::GenerateTube(float a_fOuterRadius, float a_fInnerRadius, float a_fH
 		//top
 		topRightIn = vector3(a_fInnerRadius * cos(2 * PI * i / a_nSubdivisions), a_fHeight, a_fInnerRadius * sin(2 * PI * i / a_nSubdivisions));
 		topRightOut = vector3(a_fOuterRadius * cos(2 * PI * i / a_nSubdivisions), a_fHeight, a_fOuterRadius * sin(2 * PI * i / a_nSubdivisions));
-		AddQuad( topLeftIn, topRightIn, topLeftOut, topRightOut);
+		AddQuad(topLeftIn, topRightIn, topLeftOut, topRightOut);
 		//Wall
 		AddQuad(topLeftOut, topRightOut, bottomLeftOut, bottomRightOut);
 		AddQuad(bottomLeftIn, bottomRightIn, topLeftIn, topRightIn);
-		
 
 		bottomLeftIn = bottomRightIn;
 		bottomLeftOut = bottomRightOut;
@@ -214,7 +213,39 @@ void MyMesh::GenerateTorus(float a_fOuterRadius, float a_fInnerRadius, int a_nSu
 	Init();
 
 	// Replace this with your code
-	GenerateCube(a_fOuterRadius * 2.0f, a_v3Color);
+	glm::vec3 Points[100][100];
+
+	float innerCircleRadius = (a_fOuterRadius - a_fInnerRadius) / 2;
+	float outterCircleRadius = innerCircleRadius + a_fInnerRadius;
+	float theta;
+	float varphi;
+
+	float x;
+	float y;
+	float z;
+
+	for (int i = 0; i < a_nSubdivisionsA + 1; i++)
+	{
+		for (int j = 0; j < a_nSubdivisionsB + 1; j++)
+		{
+			theta = 2 * PI * i / a_nSubdivisionsB;
+			varphi = 2 * PI * j / a_nSubdivisionsA;
+
+			x = (innerCircleRadius * cos(theta) + outterCircleRadius) * cos(varphi);
+			y = innerCircleRadius * sin(theta);
+			z = sin(varphi) * (innerCircleRadius * cos(theta) + outterCircleRadius);
+
+			Points[i][j] = vector3(x, y, z);
+		}
+	}
+
+	for (int i = 0; i < a_nSubdivisionsA; i++)
+	{
+		for (int j = 0; j < a_nSubdivisionsB; j++)
+		{
+			AddQuad(Points[i][j + 1], Points[i][j], Points[i + 1][j + 1], Points[i + 1][j]);
+		}
+	}
 	// -------------------------------
 
 	// Adding information about color
@@ -241,10 +272,8 @@ void MyMesh::GenerateSphere(float a_fRadius, int a_nSubdivisions, vector3 a_v3Co
 	// Replace this with your code
 	glm::vec3 bottom = vector3(0, 0, -a_fRadius);
 	glm::vec3 top = vector3(0, 0, 0);
-	std::vector<std::vector<vector3> > Points; //2D vector array to hold vector3 for x,y,z coords
+	std::vector<std::vector<vector3> > Points;
 
-
-	//calculates and puts the x,y,z points into the 2D array
 	for (int i = 0; i < a_nSubdivisions; i++)
 	{
 		Points.push_back(std::vector<vector3>());
@@ -259,7 +288,6 @@ void MyMesh::GenerateSphere(float a_fRadius, int a_nSubdivisions, vector3 a_v3Co
 		}
 	}
 
-	//creates the sphere
 	for (unsigned int i = 1; i < a_nSubdivisions; i++)
 	{
 		for (int j = 0; j <= a_nSubdivisions + 1; j++)
