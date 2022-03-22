@@ -14,23 +14,35 @@ void MyCamera::SetPositionTargetAndUpward(vector3 a_v3Position, vector3 a_v3Targ
 }
 void MyCamera::MoveForward(float a_fDistance)
 {
-	//Tips:: Moving will modify both positional and directional vectors,
-	//		 here we only modify the positional.
-	//       The code below "works" because we wrongly assume the forward 
-	//		 vector is going in the global -Z but if you look at the demo 
-	//		 in the _Binary folder you will notice that we are moving 
-	//		 backwards and we never get closer to the plane as we should 
-	//		 because as we are looking directly at it.
-	m_v3Position += vector3(0.0f, 0.0f, a_fDistance);
-	m_v3Target += vector3(0.0f, 0.0f, a_fDistance);
+	//calculates the change of the camera and input
+	vector4 displacement = vector4(0.0f, 0.0f, -a_fDistance, 0.0f) * m_m4View; // change in the z direction
+
+	//moves everything based on the displaced movement
+	m_v3Position += vector3(displacement.x, displacement.y, displacement.z);
+	m_v3Target += vector3(displacement.x, displacement.y, displacement.z);
+	m_v3Above += vector3(displacement.x, displacement.y, displacement.z);
 }
 void MyCamera::MoveVertical(float a_fDistance)
 {
 	//Tip:: Look at MoveForward
+		//calculates the change of the camera and input
+	vector4 displacement = vector4(0.0f, -a_fDistance, 0.0f, 0.0f) * m_m4View; //change in the y direction 
+
+	//moves everything based on the displaced movement
+	m_v3Position += vector3(displacement.x, displacement.y, displacement.z);
+	m_v3Target += vector3(displacement.x, displacement.y, displacement.z);
+	m_v3Above += vector3(displacement.x, displacement.y, displacement.z);
 }
 void MyCamera::MoveSideways(float a_fDistance)
 {
 	//Tip:: Look at MoveForward
+
+	vector4 displacement = vector4(a_fDistance, 0.0f, 0.0f, 0.0f) * m_m4View; // change in the x direction
+
+//moves everything based on the displaced movement
+	m_v3Position += vector3(displacement.x, displacement.y, displacement.z);
+	m_v3Target += vector3(displacement.x, displacement.y, displacement.z);
+	m_v3Above += vector3(displacement.x, displacement.y, displacement.z);
 }
 void MyCamera::CalculateView(void)
 {
