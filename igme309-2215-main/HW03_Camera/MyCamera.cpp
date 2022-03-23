@@ -12,10 +12,15 @@ void MyCamera::SetPositionTargetAndUpward(vector3 a_v3Position, vector3 a_v3Targ
 	//you will still need to call it at the end of this method
 	CalculateView();
 }
+
+//for an object, the "forward" is something move on z axis
+//"Upward" is on Y
+//"left right" is on x
 void MyCamera::MoveForward(float a_fDistance)
 {
 	//calculates the change of the camera and input
-	vector4 displacement = vector4(0.0f, 0.0f, -a_fDistance, 0.0f) * m_m4View; // change in the z direction
+	//move z
+	vector4 displacement = vector4(0.0f, 0.0f, -a_fDistance, 0.0f) * m_m4View;
 
 	//moves everything based on the displaced movement
 	m_v3Position += vector3(displacement.x, displacement.y, displacement.z);
@@ -25,10 +30,10 @@ void MyCamera::MoveForward(float a_fDistance)
 void MyCamera::MoveVertical(float a_fDistance)
 {
 	//Tip:: Look at MoveForward
-		//calculates the change of the camera and input
-	vector4 displacement = vector4(0.0f, -a_fDistance, 0.0f, 0.0f) * m_m4View; //change in the y direction 
+	//calculates the change of the camera and input
+	//move Y
+	vector4 displacement = vector4(0.0f, -a_fDistance, 0.0f, 0.0f) * m_m4View;
 
-	//moves everything based on the displaced movement
 	m_v3Position += vector3(displacement.x, displacement.y, displacement.z);
 	m_v3Target += vector3(displacement.x, displacement.y, displacement.z);
 	m_v3Above += vector3(displacement.x, displacement.y, displacement.z);
@@ -36,10 +41,9 @@ void MyCamera::MoveVertical(float a_fDistance)
 void MyCamera::MoveSideways(float a_fDistance)
 {
 	//Tip:: Look at MoveForward
+	//move X
+	vector4 displacement = vector4(a_fDistance, 0.0f, 0.0f, 0.0f) * m_m4View;
 
-	vector4 displacement = vector4(a_fDistance, 0.0f, 0.0f, 0.0f) * m_m4View; // change in the x direction
-
-//moves everything based on the displaced movement
 	m_v3Position += vector3(displacement.x, displacement.y, displacement.z);
 	m_v3Target += vector3(displacement.x, displacement.y, displacement.z);
 	m_v3Above += vector3(displacement.x, displacement.y, displacement.z);
@@ -52,7 +56,25 @@ void MyCamera::CalculateView(void)
 	//		 it will receive information from the main code on how much these orientations
 	//		 have change so you only need to focus on the directional and positional 
 	//		 vectors. There is no need to calculate any right click process or connections.
+
+	//here I need to calculate the total rotation by using yaw * pitch
+	quaternion pitch = glm::angleAxis(m_v3PitchYawRoll.x, m_v3Rightward);
+	quaternion yaw = glm::angleAxis(m_v3PitchYawRoll.y, m_v3Upward);
+
+	quaternion rotaion = glm::normalize(pitch * yaw);
+
+	//Update positional vector
+	m_v3Position = glm::rotate(rotaion, m_v3Position);
+	m_v3Target = glm::rotate(rotaion, m_v3Target);
+
+	//Update directional vector
+	m_v3Forward = glm::rotate(rotaion, m_v3Forward);
+	m_v3Rightward = glm::rotate(rotaion, m_v3Rightward);
+
 	m_m4View = glm::lookAt(m_v3Position, m_v3Target, m_v3Upward);
+
+	//Reset PitchYawRoll
+	m_v3PitchYawRoll = ZERO_V3;
 }
 //You can assume that the code below does not need changes unless you expand the functionality
 //of the class or create helper methods, etc.
